@@ -29,11 +29,8 @@ app = FastAPI(
 )
 
 # CORS — настраивается через переменные окружения
-allowed_origins = os.getenv("ALLOWED_ORIGINS", "*")
-if allowed_origins == "*":
-    origins = ["*"]
-else:
-    origins = [origin.strip() for origin in allowed_origins.split(",") if origin.strip()]
+# Всегда разрешаем все origins для продакшена, чтобы избежать CORS ошибок
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -41,6 +38,7 @@ app.add_middleware(
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 
