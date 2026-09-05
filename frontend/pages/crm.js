@@ -22,9 +22,9 @@ export default function CRM(){
 
   // CRM session is validated once when the page mounts.
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(()=>{const t=localStorage.getItem('crm_token');if(!t){setLoad(false);return}vt(t)},[]);
+   useEffect(()=>{const t=localStorage.getItem('access_token');if(!t){setLoad(false);return}vt(t)},[]);
   const vt=async t=>{try{const r=await axios.get(API+'/auth/me',{headers:{Authorization:'Bearer '+t}});
-    if(r.data.role==='admin'||r.data.role==='manager'){setUser(r.data);setAuth(true);fd(t)}else{localStorage.removeItem('crm_token');setLoad(false)}}catch{localStorage.removeItem('crm_token');setLoad(false)}};
+    if(r.data.role==='admin'||r.data.role==='manager'){setUser(r.data);setAuth(true);fd(t)}else{localStorage.removeItem('access_token');setLoad(false)}}catch{localStorage.removeItem('access_token');setLoad(false)}};
   const fd=async t=>{const h={Authorization:'Bearer '+t};try{const[s,rd,cr,or,nf]=await Promise.all([
     axios.get(API+'/admin/stats/summary',{headers:h}),axios.get(API+'/admin/stats/revenue-by-day?days='+rp,{headers:h}),
     axios.get(API+'/users?limit=100',{headers:h}),axios.get(API+'/orders?limit=100',{headers:h}),
@@ -35,8 +35,8 @@ export default function CRM(){
   const login=async e=>{e.preventDefault();setErr('');const f=new FormData(e.target);
     try{const r=await axios.post(API+'/auth/token',new URLSearchParams({grant_type:'password',username:f.get('username'),password:f.get('password')}),{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
     const{access_token,role}=r.data;if(role!=='admin'&&role!=='manager'){setErr('Доступ запрещён');return}
-    localStorage.setItem('crm_token',access_token);setAuth(true);fd(access_token)}catch{setErr('Неверный логин или пароль')}};
-  const logout=()=>{localStorage.removeItem('crm_token');setAuth(false);setStats(null);setUser(null)};
+    localStorage.setItem('access_token',access_token);setAuth(true);fd(access_token)}catch{setErr('Неверный логин или пароль')}};
+  const logout=()=>{localStorage.removeItem('access_token');setAuth(false);setStats(null);setUser(null)};
   const fo=sf==='all'?orders:orders.filter(o=>o.status===sf);
   const fc=sq?clients.filter(c=>(c.full_name||'').toLowerCase().includes(sq.toLowerCase())||c.username.toLowerCase().includes(sq.toLowerCase())):clients;
   if(load)return<div style={{display:'flex',justifyContent:'center',alignItems:'center',height:'100vh',background:'#F8FAFC',fontFamily:'Inter',color:'#64748B'}}>Загрузка...</div>;
@@ -51,11 +51,11 @@ export default function CRM(){
       {nav==='Сделки'&&<DealsView o={fo} sf={sf} ss={setSF} so={setSO} onCreateOrder={()=>setShowCreateOrder(true)}/>}
       {nav==='Календарь'&&<CalendarView orders={orders} clients={clients}/>}
       {nav==='Сообщения'&&<MessagesView clients={clients} orders={orders}/>}
-      {nav==='Уведомления'&&<NotificationsView notifications={notifications} setNotifications={setNotifications} setUnreadCount={setUnreadCount} api={API} token={localStorage.getItem('crm_token')}/>}
+      {nav==='Уведомления'&&<NotificationsView notifications={notifications} setNotifications={setNotifications} setUnreadCount={setUnreadCount} api={API} token={localStorage.getItem('access_token')}/>}
       {nav==='Аналитика'&&<AnalyticsView stats={stats} rev={rev} rp={rp} sp={setRP} orders={orders}/>}
     </main>
       {so&&<OrderModal o={so} c={()=>setSO(null)} onUpdate={(updated)=>{setOrders(prev=>prev.map(o=>o.id===updated.id?updated:o));setSO(updated);}}/>}
-      {showCreateOrder&&<CreateOrderModal api={API} clients={clients} token={localStorage.getItem('crm_token')} onClose={()=>setShowCreateOrder(false)} onCreated={(order)=>{setOrders(prev=>[order,...prev]);setShowCreateOrder(false);}}/>}
+      {showCreateOrder&&<CreateOrderModal api={API} clients={clients} token={localStorage.getItem('access_token')} onClose={()=>setShowCreateOrder(false)} onCreated={(order)=>{setOrders(prev=>[order,...prev]);setShowCreateOrder(false);}}/>}
   </div>}
 
 function LoginPage({onLogin,err}){
@@ -395,7 +395,7 @@ function CalendarView({orders,clients}){
 
 function MessagesView({clients,orders}){
   const[selectedUser,setSelectedUser]=useState(null);const[msg,setMsg]=useState('');const[sent,setSent]=useState([]);const[sending,setSending]=useState(false);const[search,setSearch]=useState('');
-  const token=localStorage.getItem('crm_token');
+  const token=localStorage.getItem('access_token');
   const filteredClients=search?clients.filter(c=>(c.full_name||'').toLowerCase().includes(search.toLowerCase())||c.username.toLowerCase().includes(search.toLowerCase())):clients;
   const quickMessages=[
     'Ваш автомобиль готов к выдаче! Можете забрать его в удобное для вас время.',
@@ -597,7 +597,7 @@ function OrderModal({o,c,onUpdate}){
   ];
 
   const handleSave = async () => {
-    const token = localStorage.getItem('crm_token');
+    const token = localStorage.getItem('access_token');
     if (!token) return;
 
     setSaving(true);
