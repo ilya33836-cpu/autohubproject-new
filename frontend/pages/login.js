@@ -28,9 +28,9 @@ export default function Login() {
       // Сохраняем токен в localStorage
       localStorage.setItem('access_token', response.data.access_token);
       console.log('Login successful:', response.data);
-      // Администраторов и менеджеров отправляем в админ-панель
+      // Администраторов и менеджеров отправляем в CRM
       if (response.data.role === 'admin' || response.data.role === 'manager') {
-        router.push('/admin/dashboard');
+        router.push('/crm');
       } else {
         router.push('/dashboard');
       }
