@@ -9,7 +9,7 @@ const ClientTable = ({ clients, currentUser }) => {
   const [selectedRole, setSelectedRole] = useState('');
   const [updating, setUpdating] = useState(false);
 
-  const isAdmin = currentUser?.role === 'admin';
+  const isAdminOrManager = currentUser?.role === 'admin' || currentUser?.role === 'manager';
 
   const roles = [
     { value: 'client', label: 'Клиент' },
@@ -64,7 +64,7 @@ const ClientTable = ({ clients, currentUser }) => {
             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Активен</th>
             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Роль</th>
             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Зарегистрирован</th>
-            {isAdmin && <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Действия</th>}
+            {isAdminOrManager && <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Действия</th>}
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
@@ -106,7 +106,7 @@ const ClientTable = ({ clients, currentUser }) => {
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 {new Date(client.created_at).toLocaleDateString('ru-RU')}
               </td>
-              {isAdmin && (
+              {isAdminOrManager && (
                 <td className="px-6 py-4 whitespace-nowrap text-sm">
                   {editingRole === client.id ? (
                     <div className="flex gap-2">
