@@ -5,5 +5,3 @@ builder = "nixpacks"
 startCommand = "uvicorn main:app --host 0.0.0.0"
 healthcheckPath = "/health"
 healthcheckTimeout = 100
-restartPolicyType = "on_failure"
-restartPolicyMaxRetries = 10
