@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session, joinedload
 from typing import Optional
 from passlib.context import CryptContext
-from sqlalchemy import or_
+from sqlalchemy import or_, func
 
 import models
 import schemas
@@ -19,7 +19,7 @@ def get_user_by_username(db: Session, username: str):
 
 
 def get_user_by_email(db: Session, email: str):
-    return db.query(models.User).filter(models.User.email == email).first()
+    return db.query(models.User).filter(func.lower(models.User.email) == func.lower(email)).first()
 
 
 def get_users(db: Session, skip: int = 0, limit: int = 100, search_query: Optional[str] = None):
