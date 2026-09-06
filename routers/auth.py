@@ -40,6 +40,8 @@ def verify_password(plain_password, hashed_password):
 
 def authenticate_user(db: Session, username: str, password: str):
     user = crud.get_user_by_username(db, username=username)
+    if not user:
+        user = crud.get_user_by_email(db, email=username)
     if not user or not verify_password(password, user.hashed_password):
         return False
     return user
