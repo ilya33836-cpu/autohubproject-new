@@ -59,6 +59,9 @@ const AdminLayout = ({ children, title = 'AUTOHUB Admin' }) => {
               <Link href="/" className="block px-4 py-2 hover:bg-gray-700 dark:hover:bg-gray-600">На сайт</Link>
             </li>
             <li>
+              <Link href="/crm" className="block px-4 py-2 hover:bg-gray-700 dark:hover:bg-gray-600">CRM</Link>
+            </li>
+            <li>
               <button
                 onClick={() => {
                   localStorage.removeItem('access_token');
