@@ -10,9 +10,13 @@ export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (loading) return;
+    setLoading(true);
+    setError('');
 
     try {
       const response = await axios.post(`${API}/auth/token`, new URLSearchParams({
@@ -23,12 +27,10 @@ export default function Login() {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
+        timeout: 10000,
       });
 
-      // Сохраняем токен в localStorage
       localStorage.setItem('access_token', response.data.access_token);
-      console.log('Login successful:', response.data);
-      // Администраторов и менеджеров отправляем в CRM
       if (response.data.role === 'admin' || response.data.role === 'manager') {
         router.push('/crm');
       } else {
@@ -37,6 +39,8 @@ export default function Login() {
     } catch (err) {
       console.error('Login error:', err);
       setError(err.response?.data?.detail || 'Ошибка при входе');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -73,9 +77,10 @@ export default function Login() {
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          disabled={loading}
+          className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-70 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
-          Войти
+          {loading ? 'Вход...' : 'Войти'}
         </button>
       </form>
       <div className="mt-4 text-center">
