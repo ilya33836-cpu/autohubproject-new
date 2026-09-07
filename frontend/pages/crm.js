@@ -83,7 +83,8 @@ function Sidebar({n,s,c,sc,lo,unreadCount}){
     ['Календарь','M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',0],
     ['Сообщения','M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',0],
     ['Уведомления','M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9',unreadCount],
-    ['Аналитика','M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',0]];
+    ['Аналитика','M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',0],
+    ['На сайт','M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',0]];
   return<aside style={{width:c?'70px':'240px',background:'#0D1726',minHeight:'100vh',display:'flex',flexDirection:'column',position:'fixed',left:0,top:0,transition:'width .3s',overflow:'hidden',zIndex:1000}}>
     <div style={{padding:c?'24px 16px':'24px 20px'}}>
       <div style={{display:'flex',alignItems:'center',gap:'12px'}}>
@@ -94,7 +95,7 @@ function Sidebar({n,s,c,sc,lo,unreadCount}){
     </div>
     <nav style={{flex:1,padding:'8px 12px'}}>
       {items.map(([name,icon,badge])=>(
-        <button key={name}onClick={()=>s(name)}title={name}style={{width:'100%',padding:'12px 16px',borderRadius:'10px',border:'none',background:n===name?'#4F63FF':'transparent',color:'#FFF',cursor:'pointer',fontSize:'14px',display:'flex',alignItems:'center',gap:'12px',marginBottom:'4px',fontWeight:'500',textAlign:'left',transition:'background .2s'}}
+        <button key={name}onClick={()=>{if(name==='На сайт'){window.location.href='/'}else{s(name)}}}title={name}style={{width:'100%',padding:'12px 16px',borderRadius:'10px',border:'none',background:n===name?'#4F63FF':'transparent',color:'#FFF',cursor:'pointer',fontSize:'14px',display:'flex',alignItems:'center',gap:'12px',marginBottom:'4px',fontWeight:'500',textAlign:'left',transition:'background .2s'}}
           onMouseEnter={(e)=>e.currentTarget.style.background=n===name?'#4F63FF':'rgba(255,255,255,0.1)'}
           onMouseLeave={(e)=>e.currentTarget.style.background=n===name?'#4F63FF':'transparent'}>
           <svg width="18"height="18"viewBox="0 0 24 24"fill="none"stroke="currentColor"strokeWidth="1.5"style={{flexShrink:0}}><path d={icon}/></svg>
