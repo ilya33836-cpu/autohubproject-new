@@ -8,6 +8,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 moment.locale('ru');
 const localizer = momentLocalizer(moment);
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const http = axios.create({ baseURL: API, timeout: 15000 });
 export default function CRM(){
   const[auth,setAuth]=useState(false);const[load,setLoad]=useState(true);const[user,setUser]=useState(null);
   const[stats,setStats]=useState(null);const[rev,setRev]=useState(null);const[clients,setClients]=useState([]);
@@ -23,15 +24,17 @@ export default function CRM(){
   // CRM session is validated once when the page mounts.
   // eslint-disable-next-line react-hooks/exhaustive-deps
    useEffect(()=>{const t=localStorage.getItem('access_token');if(!t){setLoad(false);return}vt(t)},[]);
-  const vt=async t=>{try{const r=await axios.get(API+'/auth/me',{headers:{Authorization:'Bearer '+t}});
-    if(r.data.role==='admin'||r.data.role==='manager'){setUser(r.data);setAuth(true);fd(t)}else{localStorage.removeItem('access_token');setLoad(false)}}catch{localStorage.removeItem('access_token');setLoad(false)}};
-  const fd=async t=>{const h={Authorization:'Bearer '+t};try{const[s,rd,cr,or,nf]=await Promise.all([
-    axios.get(API+'/admin/stats/summary',{headers:h}),axios.get(API+'/admin/stats/revenue-by-day?days='+rp,{headers:h}),
-    axios.get(API+'/users?limit=100',{headers:h}),axios.get(API+'/orders?limit=100',{headers:h}),
-    axios.get(API+'/notifications/my?limit=50',{headers:h})]);
-    setStats(s.data);setRev(rd.data);setClients(cr.data.filter(u=>u.role==='client'));setOrders(or.data);
-    const mapped=(nf.data||[]).map(n=>({id:n.id,text:n.message,time:new Date(n.created_at).toLocaleString('ru-RU'),read:n.is_read,type:n.type||'general'}));
-    setNotifications(mapped);setUnreadCount(mapped.filter(x=>!x.read).length)}catch{setErr('Ошибка загрузки')}finally{setLoad(false)}};
+   const vt=async t=>{try{const r=await http.get('/auth/me',{headers:{Authorization:'Bearer '+t}});
+     if(r.data.role==='admin'||r.data.role==='manager'){setUser(r.data);setAuth(true);fd(t)}else{localStorage.removeItem('access_token');setLoad(false)}}catch{localStorage.removeItem('access_token');setLoad(false)}};
+   const fd=async t=>{const h={Authorization:'Bearer '+t};try{
+     const s=await http.get('/admin/stats/summary',{headers:h});
+     const rd=await http.get('/admin/stats/revenue-by-day?days='+rp,{headers:h});
+     const cr=await http.get('/users?limit=50',{headers:h});
+     const or=await http.get('/orders?limit=50',{headers:h});
+     const nf=await http.get('/notifications/my?limit=20',{headers:h});
+     setStats(s.data);setRev(rd.data);setClients(cr.data.filter(u=>u.role==='client'));setOrders(or.data);
+     const mapped=(nf.data||[]).map(n=>({id:n.id,text:n.message,time:new Date(n.created_at).toLocaleString('ru-RU'),read:n.is_read,type:n.type||'general'}));
+     setNotifications(mapped);setUnreadCount(mapped.filter(x=>!x.read).length)}catch{setErr('Ошибка загрузки')}finally{setLoad(false)}};
   const login=async e=>{e.preventDefault();setErr('');const f=new FormData(e.target);
     try{const r=await axios.post(API+'/auth/token',new URLSearchParams({grant_type:'password',username:f.get('username'),password:f.get('password')}),{headers:{'Content-Type':'application/x-www-form-urlencoded'}});
     const{access_token,role}=r.data;if(role!=='admin'&&role!=='manager'){setErr('Доступ запрещён');return}
