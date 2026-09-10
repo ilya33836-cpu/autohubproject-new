@@ -12,6 +12,15 @@ const Layout = ({ children, title = 'AUTOHUB' }) => {
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
@@ -83,15 +92,17 @@ const Layout = ({ children, title = 'AUTOHUB' }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className="bg-gray-800 text-white">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <header className={`bg-gray-800 text-white transition-all duration-300 ${
+        scrolled ? 'py-2 shadow-lg' : 'py-4'
+      }`}>
+        <div className="container mx-auto px-4 flex justify-between items-center">
           <Link href="/" className="text-xl font-bold">AUTOHUB</Link>
 
           <nav className="hidden md:block">
             <ul className="flex space-x-6">
-              <li><Link href="/" className="hover:text-gray-300">Главная</Link></li>
-              <li><Link href="/services" className="hover:text-gray-300">Услуги</Link></li>
-              <li><Link href="/contact" className="hover:text-gray-300">Контакты</Link></li>
+              <li><Link href="/" className={`hover:text-gray-300 transition-colors ${scrolled ? 'text-sm' : ''}`}>Главная</Link></li>
+              <li><Link href="/services" className={`hover:text-gray-300 transition-colors ${scrolled ? 'text-sm' : ''}`}>Услуги</Link></li>
+              <li><Link href="/contact" className={`hover:text-gray-300 transition-colors ${scrolled ? 'text-sm' : ''}`}>Контакты</Link></li>
               {isAdminOrManager && <li><Link href="/admin/dashboard" className="hover:text-gray-300">Админка</Link></li>}
             </ul>
           </nav>
