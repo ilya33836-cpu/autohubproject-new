@@ -23,9 +23,18 @@ export default function CRM(){
   const[showCreateOrder,setShowCreateOrder]=useState(false);
   const[createError,setCreateError]=useState('');
 
-  // CRM session is validated once when the page mounts.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-   useEffect(()=>{const t=localStorage.getItem('access_token');if(!t){setLoad(false);return}vt(t)},[]);
+   // CRM session is validated once when the page mounts.
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(()=>{const t=localStorage.getItem('access_token');if(!t){setLoad(false);return}vt(t)},[]);
+    useEffect(()=>{
+      if(!auth||nav!=='Календарь')return;
+      const id=setInterval(async()=>{
+        const t=localStorage.getItem('access_token');
+        if(!t)return;
+        try{const or=await http.get('/orders?limit=50',{headers:{Authorization:'Bearer '+t}});setOrders(or.data)}catch{}
+      },10000);
+      return()=>clearInterval(id);
+    },[auth,nav]);
    const vt=async t=>{try{const r=await http.get('/auth/me',{headers:{Authorization:'Bearer '+t}});
      if(r.data.role==='admin'||r.data.role==='manager'){setUser(r.data);setAuth(true);fd(t)}else{localStorage.removeItem('access_token');setLoad(false)}}catch{localStorage.removeItem('access_token');setLoad(false)}};
    const fd=async t=>{const h={Authorization:'Bearer '+t};try{
@@ -297,12 +306,11 @@ function ClientsView({c,sq,ss}){
       <h3 style={{fontSize:'18px',fontWeight:'600',color:'#0F172A',margin:0}}>Клиенты ({c.length})</h3>
       <div style={{display:'flex',gap:'8px'}}>
         <input placeholder="Поиск клиента..."value={sq}onChange={(e)=>ss(e.target.value)}style={{padding:'8px 12px',borderRadius:'8px',border:'1px solid #E8ECF2',fontSize:'13px',outline:'none',fontFamily:'Inter'}}/>
-        <button onClick={()=>alert('Форма добавления клиента')}style={{padding:'8px 16px',borderRadius:'8px',border:'none',background:'#4F63FF',color:'#FFF',fontSize:'13px',fontWeight:'500',cursor:'pointer'}}>+ Добавить клиента</button>
       </div>
     </div>
     <table style={{width:'100%',borderCollapse:'collapse'}}>
       <thead><tr style={{borderBottom:'1px solid #E8ECF2'}}>
-        {['ID','Имя','Логин','Email','Телефон','Действия'].map(h=><th key={h}style={{padding:'12px 8px',textAlign:'left',fontSize:'12px',fontWeight:'600',color:'#64748B',textTransform:'uppercase'}}>{h}</th>)}
+        {['ID','Имя','Логин','Email','Телефон'].map(h=><th key={h}style={{padding:'12px 8px',textAlign:'left',fontSize:'12px',fontWeight:'600',color:'#64748B',textTransform:'uppercase'}}>{h}</th>)}
       </tr></thead>
       <tbody>{c.map(client=>(
         <tr key={client.id}style={{borderBottom:'1px solid #F1F5F9',transition:'background .15s',cursor:'pointer'}}
@@ -312,9 +320,6 @@ function ClientsView({c,sq,ss}){
           <td style={{padding:'14px 8px',fontSize:'14px',color:'#64748B'}}>{client.username}</td>
           <td style={{padding:'14px 8px',fontSize:'14px',color:'#64748B'}}>{client.email||'—'}</td>
           <td style={{padding:'14px 8px',fontSize:'14px',color:'#64748B'}}>{client.phone_number||'—'}</td>
-          <td style={{padding:'14px 8px'}}>
-            <button onClick={()=>alert('Клиент: '+client.full_name)}style={{padding:'6px 12px',borderRadius:'6px',border:'1px solid #E8ECF2',background:'#FFF',color:'#64748B',fontSize:'12px',cursor:'pointer'}}>Просмотр</button>
-          </td>
         </tr>
       ))}</tbody>
     </table>
