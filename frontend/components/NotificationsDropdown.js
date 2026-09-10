@@ -64,7 +64,7 @@ const NotificationsDropdown = ({ isOpen, onClose }) => {
   return (
     <div className="absolute right-0 mt-2 w-80 bg-white rounded-md shadow-lg overflow-hidden z-50 border border-gray-200">
       <div className="bg-gray-100 px-4 py-2 border-b">
-        <h3 className="text-lg font-semibold">Уведомления</h3>
+        <h3 className="text-lg font-semibold text-gray-900">Уведомления</h3>
       </div>
       <div className="max-h-96 overflow-y-auto">
         {loading && <p className="p-4 text-center">Загрузка...</p>}

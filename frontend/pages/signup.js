@@ -3,7 +3,9 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import Link from 'next/link';
 
-const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+import { API_BASE_URL } from '../utils/api';
+
+const API = API_BASE_URL;
 
 export default function Signup() {
   const router = useRouter();

@@ -6,7 +6,9 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 import { Line } from 'react-chartjs-2';
 import AdminLayout from '../../components/AdminLayout';
 
-const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+import { API_BASE_URL } from '../../utils/api';
+
+const API = API_BASE_URL;
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 

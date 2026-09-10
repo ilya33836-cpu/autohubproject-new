@@ -7,7 +7,9 @@ import AdminLayout from '../../components/AdminLayout';
 // Импортируем компонент таблицы
 import ClientTable from '../../components/ClientTable';
 
-const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+import { API_BASE_URL } from '../../utils/api';
+
+const API = API_BASE_URL;
 
 // Простой хук для дебаунсинга
 function useDebounce(value, delay) {

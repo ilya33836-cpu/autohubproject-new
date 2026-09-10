@@ -4,7 +4,9 @@ import axios from 'axios';
 import ProtectedRoute from '../components/ProtectedRoute';
 import Link from 'next/link';
 
-const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+import { API_BASE_URL } from '../utils/api';
+
+const API = API_BASE_URL;
 
 export default function Dashboard() {
   const router = useRouter();

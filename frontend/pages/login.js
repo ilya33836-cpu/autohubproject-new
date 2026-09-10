@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import Link from 'next/link';
 
-const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+import { API_BASE_URL } from '../utils/api';
 
 export default function Login() {
   const router = useRouter();
@@ -19,7 +19,7 @@ export default function Login() {
     setError('');
 
     try {
-      const response = await axios.post(`${API}/auth/token`, new URLSearchParams({
+      const response = await axios.post(`${API_BASE_URL}/auth/token`, new URLSearchParams({
         'grant_type': 'password',
         'username': username,
         'password': password,

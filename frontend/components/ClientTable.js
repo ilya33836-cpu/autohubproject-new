@@ -2,7 +2,9 @@ import { useState } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 
-const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+import { API_BASE_URL } from '../utils/api';
+
+const API = API_BASE_URL;
 
 const ClientTable = ({ clients, currentUser }) => {
   const [editingRole, setEditingRole] = useState(null);

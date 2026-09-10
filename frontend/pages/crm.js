@@ -7,7 +7,9 @@ import 'moment/locale/ru';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 moment.locale('ru');
 const localizer = momentLocalizer(moment);
-const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+import { API_BASE_URL } from '../utils/api';
+
+const API = API_BASE_URL;
 const http = axios.create({ baseURL: API, timeout: 15000 });
 export default function CRM(){
   const[auth,setAuth]=useState(false);const[load,setLoad]=useState(true);const[user,setUser]=useState(null);
