@@ -55,62 +55,62 @@ const ServiceTable = ({ services, onServiceUpdate, onServiceDelete, onServiceCre
   return (
     <div className="overflow-x-auto">
       <button onClick={() => { setIsCreating(true); setEditingId(null); setCurrentService({ name: '', description: '', price: '', estimated_duration: '', category: '' }); }}
-        className="mb-4 bg-primary-600 hover:bg-primary-700 text-white py-2.5 px-5 rounded-xl shadow-soft hover:shadow-glow transition-all duration-300 text-sm">Добавить услугу</button>
+        className="mb-4 bg-steel-300 hover:bg-steel-200 text-dark-900 py-2.5 px-5 rounded-xl shadow-glow hover:shadow-glow-lg transition-all duration-300 text-sm">Добавить услугу</button>
 
       {isEditingOrCreateing && (
-        <div className="mb-6 p-5 bg-white rounded-2xl shadow-soft border border-gray-100">
-          <h3 className="text-lg font-medium mb-4">{editingId ? 'Редактировать' : 'Создать'} услугу</h3>
+        <div className="mb-6 p-5 bg-dark-700 rounded-xl shadow-soft border border-dark-600">
+          <h3 className="text-lg font-medium mb-4 text-dark-100">{editingId ? 'Редактировать' : 'Создать'} услугу</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="input-label">Название *</label>
-              <input type="text" name="name" value={currentService.name} onChange={handleChange} className="input-field" />
+              <label className="input-label-dark">Название *</label>
+              <input type="text" name="name" value={currentService.name} onChange={handleChange} className="input-dark" />
             </div>
             <div>
-              <label className="input-label">Цена *</label>
-              <input type="number" name="price" value={currentService.price} onChange={handleChange} min="0" step="0.01" className="input-field" />
+              <label className="input-label-dark">Цена *</label>
+              <input type="number" name="price" value={currentService.price} onChange={handleChange} min="0" step="0.01" className="input-dark" />
             </div>
             <div>
-              <label className="input-label">Категория</label>
-              <input type="text" name="category" value={currentService.category} onChange={handleChange} className="input-field" />
+              <label className="input-label-dark">Категория</label>
+              <input type="text" name="category" value={currentService.category} onChange={handleChange} className="input-dark" />
             </div>
             <div>
-              <label className="input-label">Примерная длительность (мин)</label>
-              <input type="number" name="estimated_duration" value={currentService.estimated_duration} onChange={handleChange} min="0" className="input-field" />
+              <label className="input-label-dark">Примерная длительность (мин)</label>
+              <input type="number" name="estimated_duration" value={currentService.estimated_duration} onChange={handleChange} min="0" className="input-dark" />
             </div>
             <div className="md:col-span-2">
-              <label className="input-label">Описание</label>
-              <textarea name="description" value={currentService.description} onChange={handleChange} rows="2" className="input-field resize-none" />
+              <label className="input-label-dark">Описание</label>
+              <textarea name="description" value={currentService.description} onChange={handleChange} rows="2" className="input-dark resize-none" />
             </div>
           </div>
           <div className="mt-4 flex gap-2">
-            <button onClick={handleSave} className="bg-primary-600 hover:bg-primary-700 text-white py-2.5 px-5 rounded-xl transition-colors text-sm">Сохранить</button>
-            <button onClick={handleCancel} className="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2.5 px-5 rounded-xl transition-colors text-sm">Отмена</button>
+            <button onClick={handleSave} className="bg-steel-300 hover:bg-steel-200 text-dark-900 py-2.5 px-5 rounded-xl transition-colors text-sm">Сохранить</button>
+            <button onClick={handleCancel} className="bg-dark-600 hover:bg-dark-500 text-dark-200 py-2.5 px-5 rounded-xl transition-colors text-sm">Отмена</button>
           </div>
         </div>
       )}
 
       <table className="w-full text-sm">
         <thead>
-          <tr className="bg-surface-100">
-            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider rounded-tl-xl">ID</th>
-            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Название</th>
-            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Категория</th>
-            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Цена</th>
-            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Длит-сть</th>
-            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider rounded-tr-xl">Действия</th>
+          <tr className="bg-dark-700">
+            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-steel-300 uppercase tracking-wider rounded-tl-xl">ID</th>
+            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-steel-300 uppercase tracking-wider">Название</th>
+            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-steel-300 uppercase tracking-wider">Категория</th>
+            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-steel-300 uppercase tracking-wider">Цена</th>
+            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-steel-300 uppercase tracking-wider">Длит-сть</th>
+            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-steel-300 uppercase tracking-wider rounded-tr-xl">Действия</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-100">
+        <tbody className="divide-y divide-dark-600">
           {services.map((service) => (
-            <tr key={service.id} className="bg-white hover:bg-surface-50 transition-colors">
-              <td className="px-5 py-4 text-gray-500">{service.id}</td>
-              <td className="px-5 py-4 font-medium text-gray-900">{service.name}</td>
-              <td className="px-5 py-4 text-gray-500">{service.category || '-'}</td>
-              <td className="px-5 py-4 text-gray-500">{service.price} руб.</td>
-              <td className="px-5 py-4 text-gray-500">{service.estimated_duration || 'N/A'}</td>
-              <td className="px-5 py-4 text-gray-500">
-                <button onClick={() => handleEdit(service)} className="text-primary-600 hover:text-primary-700 mr-3 font-medium">Редактировать</button>
-                <button onClick={() => handleDelete(service.id)} className="text-red-600 hover:text-red-700 font-medium">Удалить</button>
+            <tr key={service.id} className="bg-dark-800 hover:bg-dark-700 transition-colors">
+              <td className="px-5 py-4 text-steel-400">{service.id}</td>
+              <td className="px-5 py-4 font-medium text-dark-100">{service.name}</td>
+              <td className="px-5 py-4 text-steel-400">{service.category || '-'}</td>
+              <td className="px-5 py-4 text-steel-400">{service.price} руб.</td>
+              <td className="px-5 py-4 text-steel-400">{service.estimated_duration || 'N/A'}</td>
+              <td className="px-5 py-4 text-steel-400">
+                <button onClick={() => handleEdit(service)} className="text-steel-300 hover:text-steel-200 mr-3 font-medium">Редактировать</button>
+                <button onClick={() => handleDelete(service.id)} className="text-red-400 hover:text-red-300 font-medium">Удалить</button>
               </td>
             </tr>
           ))}

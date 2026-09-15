@@ -30,7 +30,7 @@ const CarCard = ({ car, onDelete, onEditClick }) => {
           </div>
         </div>
         <div className="flex flex-col space-y-2 flex-shrink-0">
-          <button onClick={handleEdit} className="p-2 rounded-lg hover:bg-brand-500/10 text-dark-400 hover:text-brand-400 transition-colors" aria-label="Редактировать">
+          <button onClick={handleEdit} className="p-2 rounded-lg hover:bg-steel-300/10 text-dark-400 hover:text-steel-300 transition-colors" aria-label="Редактировать">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" /></svg>
           </button>
           <button onClick={handleDelete} className="p-2 rounded-lg hover:bg-red-900/30 text-dark-400 hover:text-red-400 transition-colors" aria-label="Удалить">

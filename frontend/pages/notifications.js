@@ -36,18 +36,18 @@ export default function NotificationsPage() {
   };
 
   if (loading) return <div className="text-center py-24 text-dark-400">Загрузка уведомлений...</div>;
-  if (error) return <div className="text-center py-24"><p className="text-red-400 mb-2">{error}</p><Link href="/" className="text-brand-400 hover:text-brand-300">Вернуться на главную</Link></div>;
+  if (error) return <div className="text-center py-24"><p className="text-red-400 mb-2">{error}</p><Link href="/" className="text-steel-300 hover:text-steel-200">Вернуться на главную</Link></div>;
 
   return (
     <ProtectedRoute>
       <div className="max-w-4xl mx-auto mt-8">
         <div className="mb-8">
-          <p className="text-brand-400 font-bold tracking-[0.3em] uppercase text-xs mb-2">Уведомления</p>
+          <p className="text-steel-300 font-bold tracking-[0.3em] uppercase text-xs mb-2">Уведомления</p>
           <h1 className="text-3xl md:text-4xl font-black">Уведомления</h1>
         </div>
 
         <div className="mb-6">
-          <Link href="/dashboard" className="text-brand-400 hover:text-brand-300 text-sm font-bold">&larr; Назад в личный кабинет</Link>
+          <Link href="/dashboard" className="text-steel-300 hover:text-steel-200 text-sm font-bold">&larr; Назад в личный кабинет</Link>
         </div>
 
         {notifications.length === 0 ? (
@@ -56,7 +56,7 @@ export default function NotificationsPage() {
           <div className="card-static-dark overflow-hidden">
             <ul className="divide-y divide-dark-700">
               {notifications.map(n => (
-                <li key={n.id} className={`p-5 cursor-pointer transition-colors ${!n.is_read ? 'bg-brand-500/5' : 'hover:bg-dark-700/50'}`} onClick={() => markAsRead(n.id)}>
+                <li key={n.id} className={`p-5 cursor-pointer transition-colors ${!n.is_read ? 'bg-steel-300/5' : 'hover:bg-dark-700/50'}`} onClick={() => markAsRead(n.id)}>
                   <p className="text-dark-100">{n.message}</p>
                   <p className="text-xs text-dark-500 mt-1">{new Date(n.created_at).toLocaleString('ru-RU')} • Тип: {n.type}</p>
                 </li>

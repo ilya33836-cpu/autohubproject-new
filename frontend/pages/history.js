@@ -47,7 +47,7 @@ export default function History() {
     <ProtectedRoute>
       <div className="max-w-4xl mx-auto mt-8">
         <div className="mb-8">
-          <p className="text-brand-400 font-bold tracking-[0.3em] uppercase text-xs mb-2">История</p>
+          <p className="text-steel-300 font-bold tracking-[0.3em] uppercase text-xs mb-2">История</p>
           <h1 className="text-3xl md:text-4xl font-black">История обслуживания</h1>
         </div>
 

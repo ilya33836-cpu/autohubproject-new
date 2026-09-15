@@ -27,56 +27,54 @@ const ClientTable = ({ clients, currentUser }) => {
     finally { setUpdating(false); }
   };
 
-  if (!clients || clients.length === 0) return <p className="py-8 text-gray-500">Клиентов не найдено.</p>;
+  if (!clients || clients.length === 0) return <p className="py-8 text-steel-400">Клиентов не найдено.</p>;
 
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-sm">
         <thead>
-          <tr className="bg-surface-100">
-            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider rounded-tl-xl">ID</th>
-            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Имя</th>
-            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Email</th>
-            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Телефон</th>
-            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Активен</th>
-            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Роль</th>
-            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Зарегистрирован</th>
-            {isAdminOrManager && <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider rounded-tr-xl">Действия</th>}
+          <tr className="bg-dark-700">
+            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-steel-300 uppercase tracking-wider rounded-tl-xl">ID</th>
+            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-steel-300 uppercase tracking-wider">Имя</th>
+            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-steel-300 uppercase tracking-wider">Email</th>
+            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-steel-300 uppercase tracking-wider">Телефон</th>
+            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-steel-300 uppercase tracking-wider">Активен</th>
+            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-steel-300 uppercase tracking-wider">Роль</th>
+            <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-steel-300 uppercase tracking-wider">Зарегистрирован</th>
+            {isAdminOrManager && <th scope="col" className="px-5 py-3 text-left text-xs font-semibold text-steel-300 uppercase tracking-wider rounded-tr-xl">Действия</th>}
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-100">
+        <tbody className="divide-y divide-dark-600">
           {clients.map(client => (
-            <tr key={client.id} className="bg-white hover:bg-surface-50 transition-colors">
-              <td className="px-5 py-4 text-gray-500">{client.id}</td>
-              <td className="px-5 py-4 font-medium text-gray-900">{client.full_name || client.username}</td>
-              <td className="px-5 py-4 text-gray-500">{client.email}</td>
-              <td className="px-5 py-4 text-gray-500">{client.phone_number || 'Не указан'}</td>
+            <tr key={client.id} className="bg-dark-800 hover:bg-dark-700 transition-colors">
+              <td className="px-5 py-4 text-steel-400">{client.id}</td>
+              <td className="px-5 py-4 font-medium text-dark-100">{client.full_name || client.username}</td>
+              <td className="px-5 py-4 text-steel-400">{client.email}</td>
+              <td className="px-5 py-4 text-steel-400">{client.phone_number || 'Не указан'}</td>
               <td className="px-5 py-4">
-                <span className={`badge rounded-full ${client.is_active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>{client.is_active ? 'Да' : 'Нет'}</span>
+                <span className={`badge-dark ${client.is_active ? 'bg-green-900/40 text-green-300' : 'bg-red-900/40 text-red-300'}`}>{client.is_active ? 'Да' : 'Нет'}</span>
               </td>
               <td className="px-5 py-4">
                 {editingRole === client.id ? (
-                  <select value={selectedRole} onChange={(e) => setSelectedRole(e.target.value)} className="input-field py-1.5 text-xs w-auto" disabled={updating}>
-                    {roles.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
+                  <select value={selectedRole} onChange={(e) => setSelectedRole(e.target.value)} className="input-dark py-1.5 text-xs w-auto" disabled={updating}>
+                    {roles.map(r => <option key={r.value} value={r.value} className="bg-dark-800">{r.label}</option>)}
                   </select>
                 ) : (
-                  <span className={`badge rounded-full ${client.role === 'admin' ? 'bg-purple-100 text-purple-800' : client.role === 'manager' ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'}`}>
+                  <span className={`badge-dark ${client.role === 'admin' ? 'bg-purple-900/40 text-purple-300' : client.role === 'manager' ? 'bg-blue-900/40 text-blue-300' : 'bg-steel-700 text-steel-200'}`}>
                     {roles.find(r => r.value === client.role)?.label || client.role}
                   </span>
                 )}
               </td>
-              <td className="px-5 py-4 text-gray-500">{new Date(client.created_at).toLocaleDateString('ru-RU')}</td>
+              <td className="px-5 py-4 text-steel-400">{new Date(client.created_at).toLocaleDateString('ru-RU')}</td>
               {isAdminOrManager && (
                 <td className="px-5 py-4">
                   {editingRole === client.id ? (
                     <div className="flex gap-2">
-                      <button onClick={() => handleRoleSave(client.id)} disabled={updating} className="text-green-600 hover:text-green-700 font-medium disabled:opacity-50">
-                        {updating ? '...' : 'Сохранить'}
-                      </button>
-                      <button onClick={handleRoleCancel} disabled={updating} className="text-gray-500 hover:text-gray-700 font-medium disabled:opacity-50">Отмена</button>
+                      <button onClick={() => handleRoleSave(client.id)} disabled={updating} className="text-green-400 hover:text-green-300 font-medium disabled:opacity-50">Сохранить</button>
+                      <button onClick={handleRoleCancel} disabled={updating} className="text-steel-400 hover:text-steel-200 font-medium disabled:opacity-50">Отмена</button>
                     </div>
                   ) : (
-                    <button onClick={() => handleRoleEdit(client)} className="text-primary-600 hover:text-primary-700 font-medium">Изменить роль</button>
+                    <button onClick={() => handleRoleEdit(client)} className="text-steel-300 hover:text-steel-200 font-medium">Изменить роль</button>
                   )}
                 </td>
               )}

@@ -37,7 +37,7 @@ export default function ServicesPage() {
 
       <div className="section-container">
         <div className="text-center mb-20 mt-8">
-          <p className="text-brand-400 font-bold tracking-[0.3em] uppercase text-xs mb-3">Каталог</p>
+          <p className="text-steel-300 font-bold tracking-[0.3em] uppercase text-xs mb-3">Каталог</p>
           <h1 className="text-4xl md:text-5xl font-black mb-4">Услуги автосервиса</h1>
           <p className="text-xl text-dark-300 max-w-2xl mx-auto">
             Полный спектр работ по ремонту и обслуживанию.
@@ -58,7 +58,7 @@ export default function ServicesPage() {
                     <p className="text-sm text-dark-400">{service.description || '—'}</p>
                   </div>
                   <div className="mt-6 flex items-center justify-between pt-4 border-t border-dark-700">
-                    <span className="text-2xl font-black text-brand-400">{service.price} ₽</span>
+                    <span className="text-2xl font-black text-steel-300">{service.price} ₽</span>
                     {service.estimated_duration && <span className="text-sm text-dark-400">≈ {service.estimated_duration} мин</span>}
                   </div>
                 </div>
@@ -70,7 +70,7 @@ export default function ServicesPage() {
         <div className="text-center mt-20 pb-12">
           <div className="bg-gradient-to-r from-dark-800 to-dark-700 text-white rounded-xl py-14 px-6 relative overflow-hidden">
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-brand-400 rounded-full blur-3xl" />
+              <div className="absolute top-0 right-0 w-48 h-48 bg-steel-300 rounded-full blur-3xl" />
             </div>
             <div className="relative">
               <h2 className="text-2xl md:text-3xl font-black mb-2">Готовы записаться?</h2>

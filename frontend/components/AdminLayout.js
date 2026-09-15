@@ -35,20 +35,20 @@ const AdminLayout = ({ children, title = 'AUTOHUB Admin' }) => {
   ];
 
   return (
-    <div className="min-h-screen flex bg-surface-50">
+    <div className="min-h-screen flex bg-dark-950">
       <Head><title>{title}</title></Head>
 
       <button
         onClick={() => setSidebarOpen(!sidebarOpen)}
-        className="fixed top-4 left-4 z-50 md:hidden p-2 bg-gray-800 text-white rounded-lg shadow-lg"
+        className="fixed top-4 left-4 z-50 md:hidden p-2 bg-dark-700 text-white rounded-lg shadow-lg"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" /></svg>
       </button>
 
-      <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-gray-900 text-white transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 transition-transform duration-300 ease-in-out flex-shrink-0 flex flex-col`}>
+      <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-dark-900 text-white transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 transition-transform duration-300 ease-in-out flex-shrink-0 flex flex-col`}>
         <div className="p-4 flex items-center justify-between">
           <span className="text-xl font-bold gradient-text">AUTOHUB</span>
-          <button onClick={() => setSidebarOpen(false)} className="md:hidden p-1.5 rounded-lg hover:bg-gray-700">
+          <button onClick={() => setSidebarOpen(false)} className="md:hidden p-1.5 rounded-lg hover:bg-dark-700">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
         </div>
@@ -56,22 +56,22 @@ const AdminLayout = ({ children, title = 'AUTOHUB Admin' }) => {
           {navItems.map(item => (
             <Link key={item.href} href={item.href} onClick={() => setSidebarOpen(false)}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 ${
-                router.pathname === item.href ? 'bg-gray-700 text-white' : 'hover:bg-gray-800 text-gray-300'
+                router.pathname === item.href ? 'bg-dark-700 text-white' : 'hover:bg-dark-800 text-steel-400'
               }`}>
               <span className="text-lg">{item.icon}</span>
               {item.label}
             </Link>
           ))}
           <Link href="/" onClick={() => setSidebarOpen(false)}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-800 text-gray-300 transition-all duration-200">
+            className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-dark-800 text-steel-400 transition-all duration-200">
             <span className="text-lg">🌐</span> На сайт
           </Link>
           <Link href="/crm" onClick={() => setSidebarOpen(false)}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-800 text-gray-300 transition-all duration-200">
+            className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-dark-800 text-steel-400 transition-all duration-200">
             <span className="text-lg">🤝</span> CRM
           </Link>
         </nav>
-        <div className="p-3 border-t border-gray-700">
+        <div className="p-3 border-t border-dark-600">
           <button onClick={() => { localStorage.removeItem('access_token'); router.push('/login'); }}
             className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl hover:bg-red-900/50 text-red-400 hover:text-red-300 transition-all duration-200">
             <span className="text-lg">⏻</span> Выйти

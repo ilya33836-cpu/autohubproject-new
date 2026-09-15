@@ -41,7 +41,7 @@ export default function Dashboard() {
     <ProtectedRoute>
       <div className="max-w-4xl mx-auto mt-8">
         <div className="mb-10">
-          <p className="text-brand-400 font-bold tracking-[0.3em] uppercase text-xs mb-2">Панель управления</p>
+          <p className="text-steel-300 font-bold tracking-[0.3em] uppercase text-xs mb-2">Панель управления</p>
           <h1 className="text-3xl md:text-4xl font-black">Личный кабинет, {userData?.full_name || userData?.username}</h1>
         </div>
 
@@ -50,11 +50,11 @@ export default function Dashboard() {
             <a key={card.href} href={card.href} className="card-dark p-6 group cursor-pointer">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-xl font-semibold mb-1 group-hover:text-brand-400 transition-colors">{card.title}</h2>
+                  <h2 className="text-xl font-semibold mb-1 group-hover:text-steel-300 transition-colors">{card.title}</h2>
                   <p className="text-dark-400">{card.desc}</p>
                 </div>
-                <div className="w-10 h-10 rounded-lg bg-dark-700 flex items-center justify-center group-hover:bg-brand-500/20 transition-colors">
-                  <svg className="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                <div className="w-10 h-10 rounded-lg bg-dark-700 flex items-center justify-center group-hover:bg-steel-300/20 transition-colors">
+                  <svg className="w-5 h-5 text-steel-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                 </div>
               </div>
             </a>

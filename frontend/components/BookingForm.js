@@ -66,7 +66,7 @@ const BookingForm = ({ userId, onBookingSuccess }) => {
         <label htmlFor="comment_from_client" className="input-label-dark">Комментарий</label>
         <textarea id="comment_from_client" name="comment_from_client" value={formData.comment_from_client} onChange={handleChange} rows="3" className="input-dark resize-none"></textarea>
       </div>
-      <button type="submit" className="w-full bg-brand-500 hover:bg-brand-600 text-dark-900 font-bold py-3 px-4 rounded-lg shadow-glow hover:shadow-glow-lg transition-all duration-300">Записаться</button>
+      <button type="submit" className="w-full bg-steel-300 hover:bg-steel-200 text-dark-900 font-bold py-3 px-4 rounded-lg shadow-glow hover:shadow-glow-lg transition-all duration-300">Записаться</button>
     </form>
   );
 };

@@ -89,10 +89,10 @@ const Layout = ({ children, title = 'AUTOHUB' }) => {
 
           <nav className="hidden md:block">
             <ul className="flex space-x-8">
-              <li><Link href="/" className={`hover:text-brand-400 transition-colors text-sm font-medium ${router.pathname === '/' ? 'text-brand-400' : ''}`}>Главная</Link></li>
-              <li><Link href="/services" className={`hover:text-brand-400 transition-colors text-sm font-medium ${router.pathname === '/services' ? 'text-brand-400' : ''}`}>Услуги</Link></li>
-              <li><Link href="/contact" className={`hover:text-brand-400 transition-colors text-sm font-medium ${router.pathname === '/contact' ? 'text-brand-400' : ''}`}>Контакты</Link></li>
-              {isAdminOrManager && <li><Link href="/admin/dashboard" className="hover:text-brand-400 text-sm font-medium">Админка</Link></li>}
+              <li><Link href="/" className={`hover:text-steel-300 transition-colors text-sm font-medium ${router.pathname === '/' ? 'text-steel-300' : ''}`}>Главная</Link></li>
+              <li><Link href="/services" className={`hover:text-steel-300 transition-colors text-sm font-medium ${router.pathname === '/services' ? 'text-steel-300' : ''}`}>Услуги</Link></li>
+              <li><Link href="/contact" className={`hover:text-steel-300 transition-colors text-sm font-medium ${router.pathname === '/contact' ? 'text-steel-300' : ''}`}>Контакты</Link></li>
+              {isAdminOrManager && <li><Link href="/admin/dashboard" className="hover:text-steel-300 text-sm font-medium">Админка</Link></li>}
             </ul>
           </nav>
 
@@ -109,7 +109,7 @@ const Layout = ({ children, title = 'AUTOHUB' }) => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                 </svg>
                 {unreadCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 bg-brand-500 text-dark-900 text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                  <span className="absolute -top-0.5 -right-0.5 bg-steel-300 text-dark-900 text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
                     {unreadCount}
                   </span>
                 )}
@@ -120,13 +120,13 @@ const Layout = ({ children, title = 'AUTOHUB' }) => {
             </div>
             {isAuthenticated ? (
               <>
-                <Link href="/dashboard" className="hover:text-brand-400 transition-colors text-sm font-medium">Личный кабинет</Link>
+                <Link href="/dashboard" className="hover:text-steel-300 transition-colors text-sm font-medium">Личный кабинет</Link>
                 <button onClick={handleLogout} className="text-dark-300 hover:text-red-400 transition-colors text-sm font-medium">Выйти</button>
               </>
             ) : (
               <>
-                <Link href="/login" className="hover:text-brand-400 transition-colors text-sm font-medium">Войти</Link>
-                <Link href="/signup" className="bg-brand-500 hover:bg-brand-600 text-dark-900 py-2 px-5 rounded-lg shadow-glow hover:shadow-glow-lg transition-all duration-300 text-sm font-bold">Регистрация</Link>
+                <Link href="/login" className="hover:text-steel-300 transition-colors text-sm font-medium">Войти</Link>
+                <Link href="/signup" className="bg-steel-300 hover:bg-steel-200 text-dark-900 py-2 px-5 rounded-lg shadow-glow hover:shadow-glow-lg transition-all duration-300 text-sm font-bold">Регистрация</Link>
               </>
             )}
           </div>
@@ -139,19 +139,19 @@ const Layout = ({ children, title = 'AUTOHUB' }) => {
         {isMenuOpen && (
           <div className="md:hidden bg-dark-800 border-t border-dark-700 shadow-soft">
             <ul className="px-4 py-3 space-y-1">
-              <li><Link href="/" className="block py-2.5 px-3 rounded-lg hover:bg-dark-700 hover:text-brand-400 transition-colors" onClick={toggleMenu}>Главная</Link></li>
-              <li><Link href="/services" className="block py-2.5 px-3 rounded-lg hover:bg-dark-700 hover:text-brand-400 transition-colors" onClick={toggleMenu}>Услуги</Link></li>
-              <li><Link href="/contact" className="block py-2.5 px-3 rounded-lg hover:bg-dark-700 hover:text-brand-400 transition-colors" onClick={toggleMenu}>Контакты</Link></li>
-              {isAdminOrManager && <li><Link href="/admin/dashboard" className="block py-2.5 px-3 rounded-lg hover:bg-dark-700 hover:text-brand-400 transition-colors" onClick={toggleMenu}>Админка</Link></li>}
+              <li><Link href="/" className="block py-2.5 px-3 rounded-lg hover:bg-dark-700 hover:text-steel-300 transition-colors" onClick={toggleMenu}>Главная</Link></li>
+              <li><Link href="/services" className="block py-2.5 px-3 rounded-lg hover:bg-dark-700 hover:text-steel-300 transition-colors" onClick={toggleMenu}>Услуги</Link></li>
+              <li><Link href="/contact" className="block py-2.5 px-3 rounded-lg hover:bg-dark-700 hover:text-steel-300 transition-colors" onClick={toggleMenu}>Контакты</Link></li>
+              {isAdminOrManager && <li><Link href="/admin/dashboard" className="block py-2.5 px-3 rounded-lg hover:bg-dark-700 hover:text-steel-300 transition-colors" onClick={toggleMenu}>Админка</Link></li>}
               {isAuthenticated ? (
                 <>
-                  <li><Link href="/dashboard" className="block py-2.5 px-3 rounded-lg hover:bg-dark-700 hover:text-brand-400 transition-colors" onClick={toggleMenu}>Личный кабинет</Link></li>
+                  <li><Link href="/dashboard" className="block py-2.5 px-3 rounded-lg hover:bg-dark-700 hover:text-steel-300 transition-colors" onClick={toggleMenu}>Личный кабинет</Link></li>
                   <li><button onClick={() => { handleLogout(); toggleMenu(); }} className="block w-full text-left py-2.5 px-3 rounded-lg hover:bg-red-900/30 hover:text-red-400 transition-colors">Выйти</button></li>
                 </>
               ) : (
                 <>
-                  <li><Link href="/login" className="block py-2.5 px-3 rounded-lg hover:bg-dark-700 hover:text-brand-400 transition-colors" onClick={toggleMenu}>Войти</Link></li>
-                  <li><Link href="/signup" className="block py-2.5 px-3 rounded-lg hover:bg-dark-700 hover:text-brand-400 transition-colors" onClick={toggleMenu}>Регистрация</Link></li>
+                  <li><Link href="/login" className="block py-2.5 px-3 rounded-lg hover:bg-dark-700 hover:text-steel-300 transition-colors" onClick={toggleMenu}>Войти</Link></li>
+                  <li><Link href="/signup" className="block py-2.5 px-3 rounded-lg hover:bg-dark-700 hover:text-steel-300 transition-colors" onClick={toggleMenu}>Регистрация</Link></li>
                 </>
               )}
             </ul>

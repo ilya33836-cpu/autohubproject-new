@@ -37,8 +37,8 @@ export default function Login() {
     <div className="min-h-[calc(100vh-140px)] flex items-center justify-center px-4">
       <div className="w-full max-w-md card-static-dark p-8 md:p-10">
         <div className="text-center mb-8">
-          <div className="w-14 h-14 bg-brand-500/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-            <svg className="w-7 h-7 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" /></svg>
+          <div className="w-14 h-14 bg-steel-300/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg className="w-7 h-7 text-steel-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" /></svg>
           </div>
           <h1 className="text-2xl font-bold">Вход в аккаунт</h1>
         </div>
@@ -52,13 +52,13 @@ export default function Login() {
             <label htmlFor="password" className="input-label-dark">Пароль</label>
             <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="input-dark" />
           </div>
-          <button type="submit" disabled={loading} className="w-full bg-brand-500 hover:bg-brand-600 disabled:opacity-70 text-dark-900 font-bold py-3 px-4 rounded-lg shadow-glow hover:shadow-glow-lg transition-all duration-300">
+          <button type="submit" disabled={loading} className="w-full bg-steel-300 hover:bg-steel-200 disabled:opacity-70 text-dark-900 font-bold py-3 px-4 rounded-lg shadow-glow hover:shadow-glow-lg transition-all duration-300">
             {loading ? 'Вход...' : 'Войти'}
           </button>
         </form>
         <div className="mt-8 pt-6 border-t border-dark-700 text-center space-y-2">
-          <p className="text-sm text-dark-400">Нет аккаунта?{' '}<Link href="/signup" className="text-brand-400 hover:text-brand-300 font-bold">Зарегистрироваться</Link></p>
-          <p className="text-sm text-dark-400"><Link href="/forgot-password" className="text-brand-400 hover:text-brand-300 font-bold">Забыли пароль?</Link></p>
+          <p className="text-sm text-dark-400">Нет аккаунта?{' '}<Link href="/signup" className="text-steel-300 hover:text-steel-200 font-bold">Зарегистрироваться</Link></p>
+          <p className="text-sm text-dark-400"><Link href="/forgot-password" className="text-steel-300 hover:text-steel-200 font-bold">Забыли пароль?</Link></p>
         </div>
       </div>
     </div>
