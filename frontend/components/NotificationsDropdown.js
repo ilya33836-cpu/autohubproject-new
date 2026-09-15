@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import { API_BASE_URL } from '../utils/api';
@@ -62,26 +62,26 @@ const NotificationsDropdown = ({ isOpen, onClose }) => {
   }
 
   return (
-    <div className="absolute right-0 mt-2 w-80 bg-white rounded-2xl shadow-soft-xl overflow-hidden z-50 border border-gray-100">
-      <div className="bg-gray-100 px-4 py-2 border-b">
-        <h3 className="text-lg font-semibold text-gray-900">Уведомления</h3>
+    <div className="absolute right-0 mt-2 w-80 bg-dark-800 rounded-2xl shadow-soft-xl overflow-hidden z-50 border border-dark-700">
+      <div className="bg-dark-700 px-4 py-2 border-b">
+        <h3 className="text-lg font-semibold text-steel-100">Уведомления</h3>
       </div>
       <div className="max-h-96 overflow-y-auto">
         {loading && <p className="p-4 text-center">Загрузка...</p>}
         {error && <p className="p-4 text-center text-red-500">{error}</p>}
         {!loading && !error && notifications.length === 0 && (
-          <p className="p-4 text-center text-gray-500">Нет новых уведомлений</p>
+          <p className="p-4 text-center text-steel-400">Нет новых уведомлений</p>
         )}
         {!loading && !error && notifications.length > 0 && (
-          <ul className="divide-y divide-gray-50">
+          <ul className="divide-y divide-dark-600">
             {notifications.map((notification) => (
               <li
                 key={notification.id}
-                className={`p-4 cursor-pointer transition-colors ${!notification.is_read ? 'bg-primary-50' : 'hover:bg-surface-50'}`}
+                className={`p-4 cursor-pointer transition-colors ${!notification.is_read ? 'bg-steel-50' : 'hover:bg-surface-50'}`}
                 onClick={() => markAsRead(notification.id)}
               >
                 <p className={!notification.is_read ? 'font-semibold' : ''}>{notification.message}</p>
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-steel-400 mt-1">
                   {new Date(notification.created_at).toLocaleString('ru-RU')}
                 </p>
               </li>
@@ -89,8 +89,8 @@ const NotificationsDropdown = ({ isOpen, onClose }) => {
           </ul>
         )}
       </div>
-      <div className="p-2 bg-gray-50 border-t text-center">
-        <Link href="/notifications" className="text-blue-600 hover:text-blue-800 text-sm" onClick={onClose}>
+      <div className="p-2 bg-dark-700 border-t text-center">
+        <Link href="/notifications" className="text-steel-400 hover:text-steel-300 text-sm" onClick={onClose}>
           Показать все
         </Link>
       </div>

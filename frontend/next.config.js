@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig} */
+﻿/** @type {import('next').NextConfig} */
 const nextConfig = {
   // Стандартный режим Next.js dev/prod-сервера.
   // НЕ используем output:'export', т.к. приложение обращается к REST API

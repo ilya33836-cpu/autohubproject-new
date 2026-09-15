@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
@@ -54,15 +54,15 @@ export default function ClientCalendar() {
     </div>
   );
 
-  if (loading) return <div className="text-center py-24 text-gray-500">Загрузка календаря...</div>;
-  if (error) return <div className="text-center py-24"><p className="text-red-500 mb-2">{error}</p><Link href="/dashboard" className="text-primary-600 hover:text-primary-700">Вернуться в личный кабинет</Link></div>;
-  if (!currentUser) return <div className="text-center py-24"><p className="text-red-500 mb-2">Доступ запрещен.</p><Link href="/" className="text-primary-600 hover:text-primary-700">Вернуться на главную</Link></div>;
+  if (loading) return <div className="text-center py-24 text-steel-400">Загрузка календаря...</div>;
+  if (error) return <div className="text-center py-24"><p className="text-red-500 mb-2">{error}</p><Link href="/dashboard" className="text-steel-600 hover:text-steel-700">Вернуться в личный кабинет</Link></div>;
+  if (!currentUser) return <div className="text-center py-24"><p className="text-red-500 mb-2">Доступ запрещен.</p><Link href="/" className="text-steel-600 hover:text-steel-700">Вернуться на главную</Link></div>;
 
   return (
     <ProtectedRoute>
       <div className="max-w-6xl mx-auto mt-8">
         <div className="mb-6">
-          <Link href="/dashboard" className="text-primary-600 hover:text-primary-700 text-sm font-medium">&larr; Назад в личный кабинет</Link>
+          <Link href="/dashboard" className="text-steel-600 hover:text-steel-700 text-sm font-medium">&larr; Назад в личный кабинет</Link>
         </div>
         <h1 className="text-3xl font-extrabold mb-6">Календарь записей</h1>
 

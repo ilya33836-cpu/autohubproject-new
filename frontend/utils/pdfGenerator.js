@@ -1,4 +1,4 @@
-import jsPDF from 'jspdf';
+﻿import jsPDF from 'jspdf';
 import 'jspdf-autotable'; // Импорт плагина autoTable для красивых таблиц
 
 /**

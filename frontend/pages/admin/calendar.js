@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import Link from 'next/link';
@@ -57,15 +57,15 @@ export default function AdminCalendar() {
     </div>
   );
 
-  if (loading) return <div className="text-center py-24 text-gray-500">Загрузка календаря...</div>;
-  if (error) return <div className="text-center py-24"><p className="text-red-500 mb-2">{error}</p><Link href="/admin/dashboard" className="text-primary-600 hover:text-primary-700">Вернуться в админ-панель</Link></div>;
-  if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'manager')) return <div className="text-center py-24"><p className="text-red-500 mb-2">Доступ запрещен.</p><Link href="/admin/dashboard" className="text-primary-600 hover:text-primary-700">Вернуться на главную</Link></div>;
+  if (loading) return <div className="text-center py-24 text-steel-400">Загрузка календаря...</div>;
+  if (error) return <div className="text-center py-24"><p className="text-red-500 mb-2">{error}</p><Link href="/admin/dashboard" className="text-steel-600 hover:text-steel-700">Вернуться в админ-панель</Link></div>;
+  if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'manager')) return <div className="text-center py-24"><p className="text-red-500 mb-2">Доступ запрещен.</p><Link href="/admin/dashboard" className="text-steel-600 hover:text-steel-700">Вернуться на главную</Link></div>;
 
   return (
     <AdminLayout>
       <div className="max-w-6xl mx-auto mt-8">
         <div className="mb-6">
-          <Link href="/admin/dashboard" className="text-primary-600 hover:text-primary-700 text-sm font-medium">&larr; Назад в админ-панель</Link>
+          <Link href="/admin/dashboard" className="text-steel-600 hover:text-steel-700 text-sm font-medium">&larr; Назад в админ-панель</Link>
         </div>
         <h1 className="text-3xl font-extrabold mb-6">Календарь записей</h1>
 

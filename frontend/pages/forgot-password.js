@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import Link from 'next/link';
@@ -27,11 +27,11 @@ export default function ForgotPassword() {
   return (
     <div className="max-w-md mx-auto mt-16 px-4">
       <h1 className="text-2xl font-bold mb-6">Восстановление пароля</h1>
-      {message && <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">{message}</div>}
-      {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">{error}</div>}
+      {message && <div className="bg-green-900/40 border border-green-700 text-green-300 px-4 py-3 rounded mb-4">{message}</div>}
+      {error && <div className="bg-red-900/40 border border-steel-500 text-red-300 px-4 py-3 rounded mb-4">{error}</div>}
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="email" className="block text-sm font-medium text-dark-200 mb-1">
             Email
           </label>
           <input
@@ -40,20 +40,20 @@ export default function ForgotPassword() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-dark-600 rounded-md focus:outline-none focus:ring-1 focus:ring-steel-500"
           />
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="w-full bg-steel-300 hover:bg-steel-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
           Восстановить пароль
         </button>
       </form>
       <div className="mt-4 text-center">
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-steel-500">
           Вспомнили пароль?{' '}
-          <Link href="/login" className="text-blue-600 hover:text-blue-800 font-medium">
+          <Link href="/login" className="text-steel-400 hover:text-steel-300 font-medium">
             Войти
           </Link>
         </p>

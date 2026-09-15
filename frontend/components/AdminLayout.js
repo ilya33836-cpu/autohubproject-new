@@ -1,4 +1,4 @@
-import Head from 'next/head';
+﻿import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
@@ -23,7 +23,7 @@ const AdminLayout = ({ children, title = 'AUTOHUB Admin' }) => {
       });
   }, [router]);
 
-  if (!currentUser) return <div className="min-h-screen flex items-center justify-center text-gray-500">Загрузка...</div>;
+  if (!currentUser) return <div className="min-h-screen flex items-center justify-center text-steel-400">Загрузка...</div>;
 
   const navItems = [
     { href: '/admin/dashboard', label: 'Dashboard', icon: '📊' },

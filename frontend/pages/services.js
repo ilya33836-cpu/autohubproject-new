@@ -1,4 +1,4 @@
-import Head from 'next/head';
+﻿import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import api from '../utils/api';

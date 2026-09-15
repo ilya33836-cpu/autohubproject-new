@@ -1,4 +1,4 @@
-const AdminCarTable = ({ cars }) => {
+﻿const AdminCarTable = ({ cars }) => {
   if (!cars || cars.length === 0) return <p className="py-8 text-steel-400">Автомобилей не найдено.</p>;
 
   return (

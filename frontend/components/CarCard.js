@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 
 const CarCard = ({ car, onDelete, onEditClick }) => {
   const { brand, model, year, license_plate, mileage, last_service_mileage, service_interval_km } = car;

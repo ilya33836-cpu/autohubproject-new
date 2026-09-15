@@ -1,4 +1,4 @@
-import Head from 'next/head';
+﻿import Head from 'next/head';
 import Link from 'next/link';
 
 export default function ContactPage() {
@@ -39,9 +39,9 @@ export default function ContactPage() {
         </div>
 
         <div className="text-center pb-12">
-          <div className="bg-gradient-to-r from-steel-200 to-orange-600 text-dark-900 rounded-xl py-14 px-6 relative overflow-hidden">
+          <div className="bg-gradient-to-r from-steel-200 to-steel-600 text-dark-900 rounded-xl py-14 px-6 relative overflow-hidden">
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 left-0 w-40 h-40 bg-white rounded-full -translate-x-1/2 -translate-y-1/2" />
+              <div className="absolute top-0 left-0 w-40 h-40 bg-steel-300 rounded-full -translate-x-1/2 -translate-y-1/2" />
             </div>
             <div className="relative">
               <h2 className="text-2xl md:text-3xl font-black mb-2">Удобнее записаться онлайн</h2>
