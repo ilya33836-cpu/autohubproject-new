@@ -31,3 +31,49 @@ html {
 .smooth-scroll {
   scroll-behavior: smooth;
 }
+
+/* ===== Scroll reveal: плавное появление секций и элементов при скролле ===== */
+/* Анимация включается только когда JS активен (html.reveal-js), чтобы без JS
+   контент оставался видимым — защита от пропавшего контента и FOUC. */
+.reveal-js [data-reveal] {
+  opacity: 0;
+  transform: translateY(1.5rem) scale(0.96);
+  transition-property: opacity, transform;
+  transition-duration: 600ms;
+  transition-timing-function: ease-out;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-js [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ===== Header (верхний текст): анимированная подводка при наведении ===== */
+header a:not(.bg-blue-600):not(.bg-gray-900) {
+  position: relative;
+}
+header a:not(.bg-blue-600):not(.bg-gray-900)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background: #60a5fa;
+  transition: width 0.3s ease;
+}
+header a:not(.bg-blue-600):not(.bg-gray-900):hover::after {
+  width: 100%;
+}
+
+/* Hero: лёгкий подъём и тень при наведении на кнопки/ссылки */
+section.bg-gray-900 button,
+section.bg-gray-900 a {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+section.bg-gray-900 button:hover,
+section.bg-gray-900 a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}

@@ -137,7 +137,7 @@ export default function Home() {
 
       <div className="max-w-6xl mx-auto px-4">
         {/* Преимущества */}
-        <section className="text-center max-w-3xl mx-auto mt-24">
+        <section className="text-center max-w-3xl mx-auto mt-24" data-reveal>
           <h2 className="text-3xl font-bold mb-4">Почему AUTOHUB</h2>
           <p className="text-lg text-gray-600">
             Мы объединили классический автосервис и современную IT-платформу:
@@ -147,8 +147,8 @@ export default function Home() {
         </section>
 
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
-          {ADVANTAGES.map((item) => (
-            <div key={item.title} className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+          {ADVANTAGES.map((item, i) => (
+            <div key={item.title} className="bg-white p-6 rounded-lg shadow-md border border-gray-200" data-reveal style={{ '--reveal-delay': `${i * 80}ms` }}>
               <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
               <p className="text-gray-600">{item.text}</p>
             </div>
@@ -157,10 +157,10 @@ export default function Home() {
 
         {/* Популярные услуги */}
         <section className="mt-24">
-          <h2 className="text-3xl font-bold mb-6">Популярные услуги</h2>
+          <h2 className="text-3xl font-bold mb-6" data-reveal>Популярные услуги</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {POPULAR_SERVICES.map((service) => (
-              <div key={service.name} className="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex items-center justify-between">
+            {POPULAR_SERVICES.map((service, i) => (
+              <div key={service.name} className="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex items-center justify-between" data-reveal style={{ '--reveal-delay': `${i * 80}ms` }}>
                 <div>
                   <h3 className="text-xl font-semibold">{service.icon} {service.name}</h3>
                   <p className="text-gray-600">{service.price}</p>
@@ -172,10 +172,10 @@ export default function Home() {
 
         {/* Как это работает */}
         <section className="mt-24">
-          <h2 className="text-3xl font-bold mb-6 text-center">Как это работает</h2>
+          <h2 className="text-3xl font-bold mb-6 text-center" data-reveal>Как это работает</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {HOW_IT_WORKS.map((item) => (
-              <div key={item.step} className="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center">
+            {HOW_IT_WORKS.map((item, i) => (
+              <div key={item.step} className="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center" data-reveal style={{ '--reveal-delay': `${i * 80}ms` }}>
                 <div className="text-4xl font-bold text-blue-600 mb-2">{item.step}</div>
                 <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
                 <p className="text-gray-600">{item.text}</p>
@@ -186,10 +186,10 @@ export default function Home() {
 
         {/* FAQ */}
         <section className="max-w-3xl mx-auto mt-24">
-          <h2 className="text-3xl font-bold mb-6 text-center">Частые вопросы</h2>
+          <h2 className="text-3xl font-bold mb-6 text-center" data-reveal>Частые вопросы</h2>
           <div className="space-y-4">
-            {FAQ.map((item) => (
-              <details key={item.q} className="bg-gray-50 rounded-lg border border-gray-200 p-4">
+            {FAQ.map((item, i) => (
+              <details key={item.q} className="bg-gray-50 rounded-lg border border-gray-200 p-4" data-reveal style={{ '--reveal-delay': `${i * 80}ms` }}>
                 <summary className="font-semibold cursor-pointer">{item.q}</summary>
                 <p className="mt-2 text-gray-600">{item.a}</p>
               </details>
@@ -198,7 +198,7 @@ export default function Home() {
         </section>
 
         {/* Контакты */}
-        <section className="bg-gray-100 rounded-xl p-8 mt-24">
+        <section className="bg-gray-100 rounded-xl p-8 mt-24" data-reveal>
           <h2 className="text-3xl font-bold mb-4">Контакты</h2>
           <p className="text-gray-700">
             Москва, Ленинградский проспект, 39 • +7 (900) 000-00-00 • Ежедневно с 9:00 до 21:00
@@ -209,7 +209,7 @@ export default function Home() {
         </section>
 
         {/* CTA */}
-        <section className="bg-blue-600 text-white rounded-xl p-10 text-center mt-24">
+        <section className="bg-blue-600 text-white rounded-xl p-10 text-center mt-24" data-reveal>
           <h2 className="text-3xl font-bold mb-3">
             {isAuthenticated ? 'Готовы записаться на обслуживание?' : 'Готовы доверить нам свой автомобиль?'}
           </h2>
