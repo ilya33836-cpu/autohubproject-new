@@ -63,7 +63,7 @@ export default function AdminCars() {
           <input id="search-input-cars" type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Введите ID, марку, модель, гос. номер или VIN..." className="input-field max-w-md" />
         </div>
 
-        <div className="card-static p-6">
+        <div className="card-static-dark p-6">
           <AdminCarTable cars={cars} />
         </div>
       </div>

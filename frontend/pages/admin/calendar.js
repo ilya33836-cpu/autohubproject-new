@@ -69,7 +69,7 @@ export default function AdminCalendar() {
         </div>
         <h1 className="text-3xl font-extrabold mb-6">Календарь записей</h1>
 
-        <div className="card-static p-4 h-[70vh]">
+        <div className="card-static-dark p-4 h-[70vh]">
           {typeof window !== 'undefined' ? (
             <Calendar localizer={localizer} events={events} startAccessor="start" endAccessor="end" style={{ height: '100%' }}
               messages={{ month: 'Месяц', week: 'Неделя', day: 'День', agenda: 'Повестка дня', date: 'Дата', time: 'Время', event: 'Событие' }}

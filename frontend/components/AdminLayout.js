@@ -83,7 +83,7 @@ const AdminLayout = ({ children, title = 'AUTOHUB Admin' }) => {
         <div className="fixed inset-0 bg-black/30 z-30 md:hidden" onClick={() => setSidebarOpen(false)} />
       )}
 
-      <main className="flex-grow md:ml-64 p-6 md:p-8 overflow-y-auto">
+      <main className="flex-grow md:ml-64 p-6 md:p-8 overflow-y-auto bg-dark-900">
         {children}
       </main>
     </div>

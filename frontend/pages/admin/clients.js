@@ -60,7 +60,7 @@ export default function AdminClients() {
           <input id="search-input-clients" type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Введите ID или часть имени/email..." className="input-field max-w-md" />
         </div>
 
-        <div className="card-static p-6">
+        <div className="card-static-dark p-6">
           <ClientTable clients={clients} currentUser={currentUser} />
         </div>
       </div>

@@ -78,7 +78,7 @@ export default function AdminAppointments() {
           </div>
         </div>
 
-        <div className="card-static p-6">
+        <div className="card-static-dark p-6">
           <AppointmentTable appointments={appointments} onUpdateStatus={handleStatusUpdate} dateFilter={dateFilter} plateQuery={plateQuery} />
         </div>
       </div>
