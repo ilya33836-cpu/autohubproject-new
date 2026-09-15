@@ -159,3 +159,54 @@ header a:not(.bg-steel-300):not(.bg-dark-800):hover::after {
 .table-row-dark:hover {
   @apply bg-dark-700/50;
 }
+
+.react-big-calendar .rbc-calendar { background-color: #171717; color: #f5f5f5; }
+.react-big-calendar .rbc-toolbar { background-color: #171717; border-bottom: 1px solid #262626; margin-bottom: 0; }
+.react-big-calendar .rbc-btn { color: #cbd5e1; background-color: transparent; border: 1px solid #475569; }
+.react-big-calendar .rbc-btn:hover { background-color: #334155; color: #f5f5f5; }
+.react-big-calendar .rbc-btn.rbc-active { background-color: #cbd5e1; color: #0a0a0a; border-color: #cbd5e1; }
+.react-big-calendar .rbc-toolbar + .rbc-toolbar { border-bottom: 1px solid #262626; }
+.react-big-calendar .rbc-cell { border: none; background-color: #171717; }
+.react-big-calendar .rbc-cell:hover { background-color: #262626; }
+.react-big-calendar .rbc-row-content { background-color: #171717; color: #f5f5f5; }
+.react-big-calendar .rbc-row { border-bottom: 1px solid #262626; }
+.react-big-calendar .rbc-day-bg { background-color: #171717; }
+.react-big-calendar .rbc-off-range { background-color: #0a0a0a; color: #475569; }
+.react-big-calendar .rbc-off-range .rbc-day-bg { background-color: #0a0a0a; }
+.react-big-calendar .rbc-today { background-color: #334155; color: #f5f5f5; }
+.react-big-calendar .rbc-selected { background-color: #475569; color: #f5f5f5; }
+.react-big-calendar .rbc-event { border: none; background-color: #334155; color: #f5f5f5; }
+.react-big-calendar .rbc-event:hover { background-color: #475569; }
+.react-big-calendar .rbc-agenda { background-color: #171717; color: #f5f5f5; }
+.react-big-calendar .rbc-agenda table { border-color: #262626; }
+.react-big-calendar .rbc-agenda th { background-color: #262626; color: #f5f5f5; border-color: #334155; }
+.react-big-calendar .rbc-agenda td { border-color: #334155; }
+.react-big-calendar .rbc-input { background-color: #171717; border-color: #475569; color: #f5f5f5; }
+.react-big-calendar .rbc-detail { background-color: #171717; }
+.react-big-calendar .rbc-view-link { color: #cbd5e1; }
+.react-big-calendar .rbc-view-link:hover { color: #f5f5f5; }
+.react-big-calendar .rbc-time-view .rbc-row { border-bottom-color: #262626; }
+.react-big-calendar .rbc-col-header { background-color: #171717; color: #f5f5f5; border-color: #334155; }
+.react-big-calendar .rbc-date-cell { min-height: 48px; }
+.react-big-calendar .rbc-time-column { background-color: #171717; color: #f5f5f5; }
+.react-big-calendar .rbc-time-gutter { background-color: #171717; color: #f5f5f5; border-color: #334155; }
+.react-big-calendar .rbc-allday-cell { background-color: #171717; color: #f5f5f5; }
+.react-big-calendar .rbc-allday-row { border-bottom-color: #262626; }
+.react-big-calendar .rbc-addons-dnd-dragging { opacity: 0.5; }
+.react-big-calendar .rbc-addons-dnd-dragging .rbc-event { background-color: #334155; }
+.react-big-calendar .rbc-addons-dnd-drag-preview { background-color: #334155; }
+.react-big-calendar .rbc-addons-dnd-drag-snap-row { background-color: #334155; }
+.react-big-calendar .rbc-addons-dnd-drag-snap-row .rbc-row-content { background-color: #334155; }
+.react-big-calendar .rbc-addons-dnd-drag-snap-row .rbc-row-content .rbc-cell { background-color: #334155; }
+.react-big-calendar .rbc-addons-dnd-drag-snap-row .rbc-row-content .rbc-day-bg { background-color: #334155; }
+.react-big-calendar .rbc-addons-dnd-drag-snap-row .rbc-row-content .rbc-row { border-bottom-color: #334155; }
+.react-big-calendar .rbc-addons-dnd-drag-snap-row .rbc-row-content .rbc-time-column { background-color: #334155; }
+.react-big-calendar .rbc-addons-dnd-drag-snap-row .rbc-row-content .rbc-time-gutter { background-color: #334155; border-color: #334155; }
+.react-big-calendar .rbc-addons-dnd-drag-snap-row .rbc-row-content .rbc-allday-row { border-bottom-color: #334155; }
+.react-big-calendar .rbc-addons-dnd-drag-snap-row .rbc-row-content .rbc-allday-cell { background-color: #334155; }
+.react-big-calendar .rbc-addons-dnd-drag-snap-row .rbc-row-content .rbc-col-header { background-color: #334155; }
+.react-big-calendar .rbc-addons-dnd-drag-snap-row .rbc-row-content .rbc-off-range { background-color: #262626; }
+.react-big-calendar .rbc-addons-dnd-drag-snap-row .rbc-row-content .rbc-off-range .rbc-day-bg { background-color: #262626; }
+.react-big-calendar .rbc-addons-dnd-drag-snap-row .rbc-row-content .rbc-selected { background-color: #475569; }
+.react-big-calendar .rbc-addons-dnd-drag-snap-row .rbc-row-content .rbc-today { background-color: #475569; }
+.react-big-calendar .rbc-addons-dnd-drag-snap-row .rbc-row-content .rbc-event { background-color: #475569; }
