@@ -19,7 +19,6 @@ export default function NotificationsPage() {
         const response = await axios.get(`${API_BASE_URL}/notifications/my`, { headers: { Authorization: `Bearer ${token}` } });
         setNotifications(response.data);
       } catch (err) {
-        console.error('Error fetching notifications:', err);
         setError('Ошибка при загрузке уведомлений');
         if (err.response?.status === 401) localStorage.removeItem('access_token');
       } finally { setLoading(false); }
@@ -33,41 +32,33 @@ export default function NotificationsPage() {
     try {
       await axios.put(`${API_BASE_URL}/notifications/${id}`, { is_read: true }, { headers: { Authorization: `Bearer ${token}` } });
       setNotifications(prev => prev.map(n => n.id === id ? { ...n, is_read: true } : n));
-    } catch (err) { console.error('Error marking notification as read:', err); }
+    } catch (err) { console.error(err); }
   };
 
-  if (loading) return <div className="text-center py-24 text-gray-500">Загрузка уведомлений...</div>;
-  if (error) return <div className="text-center py-24"><p className="text-red-500 mb-2">{error}</p><Link href="/" className="text-primary-600 hover:text-primary-700">Вернуться на главную</Link></div>;
+  if (loading) return <div className="text-center py-24 text-dark-400">Загрузка уведомлений...</div>;
+  if (error) return <div className="text-center py-24"><p className="text-red-400 mb-2">{error}</p><Link href="/" className="text-brand-400 hover:text-brand-300">Вернуться на главную</Link></div>;
 
   return (
     <ProtectedRoute>
       <div className="max-w-4xl mx-auto mt-8">
         <div className="mb-8">
-          <p className="text-primary-600 font-semibold tracking-widest uppercase text-sm mb-2">Уведомления</p>
-          <h1 className="text-3xl md:text-4xl font-extrabold">Уведомления</h1>
+          <p className="text-brand-400 font-bold tracking-[0.3em] uppercase text-xs mb-2">Уведомления</p>
+          <h1 className="text-3xl md:text-4xl font-black">Уведомления</h1>
         </div>
 
         <div className="mb-6">
-          <Link href="/dashboard" className="text-primary-600 hover:text-primary-700 text-sm font-medium">&larr; Назад в личный кабинет</Link>
+          <Link href="/dashboard" className="text-brand-400 hover:text-brand-300 text-sm font-bold">&larr; Назад в личный кабинет</Link>
         </div>
 
         {notifications.length === 0 ? (
-          <div className="card-static p-12 text-center">
-            <p className="text-gray-500 text-lg">У вас нет уведомлений.</p>
-          </div>
+          <div className="card-static-dark p-12 text-center"><p className="text-dark-400 text-lg">У вас нет уведомлений.</p></div>
         ) : (
-          <div className="card-static overflow-hidden">
-            <ul className="divide-y divide-gray-100">
+          <div className="card-static-dark overflow-hidden">
+            <ul className="divide-y divide-dark-700">
               {notifications.map(n => (
-                <li
-                  key={n.id}
-                  className={`p-5 cursor-pointer transition-colors ${!n.is_read ? 'bg-primary-50/60' : 'hover:bg-surface-50'}`}
-                  onClick={() => markAsRead(n.id)}
-                >
-                  <p className="text-gray-900">{n.message}</p>
-                  <p className="text-xs text-gray-400 mt-1">
-                    {new Date(n.created_at).toLocaleString('ru-RU')} • Тип: {n.type}
-                  </p>
+                <li key={n.id} className={`p-5 cursor-pointer transition-colors ${!n.is_read ? 'bg-brand-500/5' : 'hover:bg-dark-700/50'}`} onClick={() => markAsRead(n.id)}>
+                  <p className="text-dark-100">{n.message}</p>
+                  <p className="text-xs text-dark-500 mt-1">{new Date(n.created_at).toLocaleString('ru-RU')} • Тип: {n.type}</p>
                 </li>
               ))}
             </ul>

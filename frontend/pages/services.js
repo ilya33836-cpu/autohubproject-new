@@ -19,9 +19,7 @@ export default function ServicesPage() {
 
   useEffect(() => {
     api.get('/services/?skip=0&limit=100')
-      .then((res) => {
-        if (res.data && res.data.length > 0) setServices(res.data);
-      })
+      .then((res) => { if (res.data && res.data.length > 0) setServices(res.data); })
       .catch(() => {})
       .finally(() => setLoading(false));
   }, []);
@@ -39,31 +37,29 @@ export default function ServicesPage() {
 
       <div className="section-container">
         <div className="text-center mb-20 mt-8">
-          <p className="text-primary-600 font-semibold tracking-widest uppercase text-sm mb-3">Каталог</p>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Услуги автосервиса</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Полный спектр работ по ремонту и обслуживанию автомобиля.
-            Точную стоимость каждого заказа рассчитает менеджер после диагностики.
+          <p className="text-brand-400 font-bold tracking-[0.3em] uppercase text-xs mb-3">Каталог</p>
+          <h1 className="text-4xl md:text-5xl font-black mb-4">Услуги автосервиса</h1>
+          <p className="text-xl text-dark-300 max-w-2xl mx-auto">
+            Полный спектр работ по ремонту и обслуживанию.
+            Точную стоимость рассчитает менеджер после диагностики.
           </p>
         </div>
 
-        {loading && <p className="text-center text-gray-500 mb-12">Загрузка услуг...</p>}
+        {loading && <p className="text-center text-dark-400 mb-12">Загрузка услуг...</p>}
 
         {Object.entries(grouped).map(([category, items]) => (
           <section key={category} className="mb-20">
-            <h2 className="text-2xl font-bold mb-8 pb-3 border-b border-gray-200">{category}</h2>
+            <h2 className="text-2xl font-bold mb-8 pb-3 border-b border-dark-700">{category}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {items.map((service) => (
-                <div key={service.id} className="card p-6 flex flex-col">
+                <div key={service.id} className="card-dark p-6 flex flex-col">
                   <div className="flex-grow">
-                    <h3 className="text-lg font-semibold mb-2">{service.name}</h3>
-                    <p className="text-sm text-gray-500">{service.description || '—'}</p>
+                    <h3 className="text-lg font-bold mb-2">{service.name}</h3>
+                    <p className="text-sm text-dark-400">{service.description || '—'}</p>
                   </div>
-                  <div className="mt-6 flex items-center justify-between pt-4 border-t border-gray-100">
-                    <span className="text-2xl font-extrabold text-primary-600">{service.price} ₽</span>
-                    {service.estimated_duration && (
-                      <span className="text-sm text-gray-400">≈ {service.estimated_duration} мин</span>
-                    )}
+                  <div className="mt-6 flex items-center justify-between pt-4 border-t border-dark-700">
+                    <span className="text-2xl font-black text-brand-400">{service.price} ₽</span>
+                    {service.estimated_duration && <span className="text-sm text-dark-400">≈ {service.estimated_duration} мин</span>}
                   </div>
                 </div>
               ))}
@@ -72,15 +68,14 @@ export default function ServicesPage() {
         ))}
 
         <div className="text-center mt-20 pb-12">
-          <div className="bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-2xl py-14 px-6 relative overflow-hidden">
+          <div className="bg-gradient-to-r from-dark-800 to-dark-700 text-white rounded-xl py-14 px-6 relative overflow-hidden">
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-primary-400 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple-400 rounded-full blur-3xl" />
+              <div className="absolute top-0 right-0 w-48 h-48 bg-brand-400 rounded-full blur-3xl" />
             </div>
             <div className="relative">
-              <h2 className="text-2xl md:text-3xl font-bold mb-2">Готовы записаться?</h2>
-              <p className="mb-8 text-gray-300 text-lg">Оставьте онлайн-заявку — перезвоним и подтвердим запись.</p>
-              <Link href="/book-service" className="btn-primary inline-block">Записаться онлайн</Link>
+              <h2 className="text-2xl md:text-3xl font-black mb-2">Готовы записаться?</h2>
+              <p className="mb-8 text-dark-300 text-lg">Оставьте онлайн-заявку — перезвоним и подтвердим запись.</p>
+              <Link href="/book-service" className="btn-brand inline-block">Записаться онлайн</Link>
             </div>
           </div>
         </div>
