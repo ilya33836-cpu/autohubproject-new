@@ -20,13 +20,9 @@ export default function ServicesPage() {
   useEffect(() => {
     api.get('/services/?skip=0&limit=100')
       .then((res) => {
-        if (res.data && res.data.length > 0) {
-          setServices(res.data);
-        }
+        if (res.data && res.data.length > 0) setServices(res.data);
       })
-      .catch(() => {
-        /* API недоступен — оставляем список-заглушку */
-      })
+      .catch(() => {})
       .finally(() => setLoading(false));
   }, []);
 
@@ -39,13 +35,12 @@ export default function ServicesPage() {
 
   return (
     <>
-      <Head>
-        <title>Услуги | AUTOHUB</title>
-      </Head>
+      <Head><title>Услуги | AUTOHUB</title></Head>
 
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-16 mt-16">
-          <h1 className="text-4xl font-bold mb-3">Услуги автосервиса</h1>
+      <div className="section-container">
+        <div className="text-center mb-20 mt-8">
+          <p className="text-primary-600 font-semibold tracking-widest uppercase text-sm mb-3">Каталог</p>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Услуги автосервиса</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Полный спектр работ по ремонту и обслуживанию автомобиля.
             Точную стоимость каждого заказа рассчитает менеджер после диагностики.
@@ -55,17 +50,19 @@ export default function ServicesPage() {
         {loading && <p className="text-center text-gray-500 mb-12">Загрузка услуг...</p>}
 
         {Object.entries(grouped).map(([category, items]) => (
-          <section key={category} className="mb-16">
-            <h2 className="text-2xl font-semibold mb-6">{category}</h2>
+          <section key={category} className="mb-20">
+            <h2 className="text-2xl font-bold mb-8 pb-3 border-b border-gray-200">{category}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {items.map((service) => (
-                <div key={service.id} className="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
-                  <h3 className="text-lg font-semibold mb-1">{service.name}</h3>
-                  <p className="text-sm text-gray-600 flex-grow">{service.description || '—'}</p>
-                  <div className="mt-4 flex items-center justify-between">
-                    <span className="text-xl font-bold text-blue-600">{service.price} ₽</span>
+                <div key={service.id} className="card p-6 flex flex-col">
+                  <div className="flex-grow">
+                    <h3 className="text-lg font-semibold mb-2">{service.name}</h3>
+                    <p className="text-sm text-gray-500">{service.description || '—'}</p>
+                  </div>
+                  <div className="mt-6 flex items-center justify-between pt-4 border-t border-gray-100">
+                    <span className="text-2xl font-extrabold text-primary-600">{service.price} ₽</span>
                     {service.estimated_duration && (
-                      <span className="text-sm text-gray-500">≈ {service.estimated_duration} мин</span>
+                      <span className="text-sm text-gray-400">≈ {service.estimated_duration} мин</span>
                     )}
                   </div>
                 </div>
@@ -74,12 +71,18 @@ export default function ServicesPage() {
           </section>
         ))}
 
-        <div className="text-center mt-16 bg-gray-900 text-white py-10 px-6 rounded-xl">
-          <h2 className="text-2xl font-bold mb-2">Готовы записаться?</h2>
-          <p className="mb-6 text-gray-300">Оставьте онлайн-заявку — перезвоним и подтвердим запись.</p>
-          <Link href="/book-service" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg">
-            Записаться онлайн
-          </Link>
+        <div className="text-center mt-20 pb-12">
+          <div className="bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-2xl py-14 px-6 relative overflow-hidden">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-primary-400 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple-400 rounded-full blur-3xl" />
+            </div>
+            <div className="relative">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2">Готовы записаться?</h2>
+              <p className="mb-8 text-gray-300 text-lg">Оставьте онлайн-заявку — перезвоним и подтвердим запись.</p>
+              <Link href="/book-service" className="btn-primary inline-block">Записаться онлайн</Link>
+            </div>
+          </div>
         </div>
       </div>
     </>

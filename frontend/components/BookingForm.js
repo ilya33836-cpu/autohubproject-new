@@ -22,13 +22,11 @@ const BookingForm = ({ userId, onBookingSuccess }) => {
       if (!token) return;
 
       try {
-        // Получаем автомобили текущего пользователя через специализированный эндпоинт
         const carsResponse = await axios.get(`${API_BASE_URL}/cars/my`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setCars(carsResponse.data);
 
-        // Получаем все услуги
         const servicesResponse = await axios.get(`${API_BASE_URL}/services/?skip=0&limit=100`, {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -66,17 +64,14 @@ const BookingForm = ({ userId, onBookingSuccess }) => {
     try {
       const response = await axios.post(`${API_BASE_URL}/orders/`, {
         ...formData,
-        user_id: userId, // Убедимся, что ID пользователя установлено
-        // mileage_at_order: cars.find(c => c.id === parseInt(formData.car_id))?.mileage || 0 // Пример получения пробега
-        // Пробег можно запросить отдельно или не отправлять, если необязателен
+        user_id: userId,
       }, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
       console.log('Booking successful:', response.data);
       alert('Запись создана успешно!');
-      onBookingSuccess(); // Уведомляем родительский компонент
-      // Сброс формы
+      onBookingSuccess();
       setFormData({ car_id: '', service_id: '', date_requested: '', comment_from_client: '' });
     } catch (err) {
       console.error('Error creating booking:', err);
@@ -85,22 +80,22 @@ const BookingForm = ({ userId, onBookingSuccess }) => {
   };
 
   if (loading) {
-    return <div>Загрузка данных для записи...</div>;
+    return <div className="text-center py-12 text-gray-500">Загрузка данных для записи...</div>;
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">{error}</div>}
+    <form onSubmit={handleSubmit} className="space-y-5">
+      {error && <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">{error}</div>}
 
       <div>
-        <label htmlFor="car_id" className="block text-sm font-medium text-gray-700 mb-1">Выберите автомобиль *</label>
+        <label htmlFor="car_id" className="input-label">Выберите автомобиль *</label>
         <select
           id="car_id"
           name="car_id"
           value={formData.car_id}
           onChange={handleChange}
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+          className="input-field"
         >
           <option value="">-- Выберите автомобиль --</option>
           {cars.map(car => (
@@ -110,24 +105,24 @@ const BookingForm = ({ userId, onBookingSuccess }) => {
       </div>
 
       <div>
-        <label htmlFor="service_id" className="block text-sm font-medium text-gray-700 mb-1">Выберите услугу *</label>
+        <label htmlFor="service_id" className="input-label">Выберите услугу *</label>
         <select
           id="service_id"
           name="service_id"
           value={formData.service_id}
           onChange={handleChange}
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+          className="input-field"
         >
           <option value="">-- Выберите услугу --</option>
           {services.map(service => (
-            <option key={service.id} value={service.id}>{service.name} - {service.price} руб.</option>
+            <option key={service.id} value={service.id}>{service.name} — {service.price} руб.</option>
           ))}
         </select>
       </div>
 
       <div>
-        <label htmlFor="date_requested" className="block text-sm font-medium text-gray-700 mb-1">Желаемая дата и время *</label>
+        <label htmlFor="date_requested" className="input-label">Желаемая дата и время *</label>
         <input
           type="datetime-local"
           id="date_requested"
@@ -135,12 +130,12 @@ const BookingForm = ({ userId, onBookingSuccess }) => {
           value={formData.date_requested}
           onChange={handleChange}
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+          className="input-field"
         />
       </div>
 
       <div>
-        <label htmlFor="mileage_at_order" className="block text-sm font-medium text-gray-700 mb-1">Пробег на момент записи (км)</label>
+        <label htmlFor="mileage_at_order" className="input-label">Пробег на момент записи (км)</label>
         <input
           type="number"
           id="mileage_at_order"
@@ -148,25 +143,25 @@ const BookingForm = ({ userId, onBookingSuccess }) => {
           value={formData.mileage_at_order}
           onChange={handleChange}
           min="0"
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+          className="input-field"
         />
       </div>
 
       <div>
-        <label htmlFor="comment_from_client" className="block text-sm font-medium text-gray-700 mb-1">Комментарий</label>
+        <label htmlFor="comment_from_client" className="input-label">Комментарий</label>
         <textarea
           id="comment_from_client"
           name="comment_from_client"
           value={formData.comment_from_client}
           onChange={handleChange}
           rows="3"
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+          className="input-field resize-none"
         ></textarea>
       </div>
 
       <button
         type="submit"
-        className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        className="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 px-4 rounded-xl shadow-soft hover:shadow-glow transition-all duration-300"
       >
         Записаться
       </button>

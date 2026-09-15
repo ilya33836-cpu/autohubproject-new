@@ -62,7 +62,7 @@ const NotificationsDropdown = ({ isOpen, onClose }) => {
   }
 
   return (
-    <div className="absolute right-0 mt-2 w-80 bg-white rounded-md shadow-lg overflow-hidden z-50 border border-gray-200">
+    <div className="absolute right-0 mt-2 w-80 bg-white rounded-2xl shadow-soft-xl overflow-hidden z-50 border border-gray-100">
       <div className="bg-gray-100 px-4 py-2 border-b">
         <h3 className="text-lg font-semibold text-gray-900">Уведомления</h3>
       </div>
@@ -73,13 +73,11 @@ const NotificationsDropdown = ({ isOpen, onClose }) => {
           <p className="p-4 text-center text-gray-500">Нет новых уведомлений</p>
         )}
         {!loading && !error && notifications.length > 0 && (
-          <ul>
+          <ul className="divide-y divide-gray-50">
             {notifications.map((notification) => (
               <li
                 key={notification.id}
-                className={`p-4 border-b border-gray-200 cursor-pointer hover:bg-gray-50 ${
-                  !notification.is_read ? 'bg-blue-50' : ''
-                }`}
+                className={`p-4 cursor-pointer transition-colors ${!notification.is_read ? 'bg-primary-50' : 'hover:bg-surface-50'}`}
                 onClick={() => markAsRead(notification.id)}
               >
                 <p className={!notification.is_read ? 'font-semibold' : ''}>{notification.message}</p>

@@ -13,10 +13,7 @@ export default function BookService() {
   useEffect(() => {
     const fetchUserData = async () => {
       const token = localStorage.getItem('access_token');
-      if (!token) {
-        return;
-      }
-
+      if (!token) return;
       try {
         const response = await axios.get(`${API_BASE_URL}/auth/me`, {
           headers: { Authorization: `Bearer ${token}` },
@@ -29,32 +26,31 @@ export default function BookService() {
         }
       }
     };
-
     fetchUserData();
   }, [router]);
 
   const handleBookingSuccess = () => {
     setBookingSuccess(true);
-    // Можно добавить автоматическое снятие флага через некоторое время
     setTimeout(() => setBookingSuccess(false), 3000);
   };
 
-  if (!currentUser) {
-    return <div className="text-center">Загрузка...</div>;
-  }
+  if (!currentUser) return <div className="text-center py-24 text-gray-500">Загрузка...</div>;
 
   return (
     <ProtectedRoute>
-      <div className="max-w-2xl mx-auto px-4 mt-16">
-        <h1 className="text-3xl font-bold mb-6">Онлайн-запись на обслуживание</h1>
+      <div className="max-w-2xl mx-auto px-4 mt-8">
+        <div className="mb-10">
+          <p className="text-primary-600 font-semibold tracking-widest uppercase text-sm mb-2">Запись</p>
+          <h1 className="text-3xl md:text-4xl font-extrabold">Онлайн-запись на обслуживание</h1>
+        </div>
 
         {bookingSuccess && (
-          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+          <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl mb-6">
             Запись успешно создана!
           </div>
         )}
 
-        <div className="bg-white p-6 rounded-lg shadow-md">
+        <div className="card-static p-6 md:p-8">
           <BookingForm userId={currentUser.id} onBookingSuccess={handleBookingSuccess} />
         </div>
       </div>

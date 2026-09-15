@@ -20,10 +20,10 @@ const ADVANTAGES = [
 ];
 
 const HOW_IT_WORKS = [
-  { step: '1', title: 'Создайте аккаунт', text: 'Зарегистрируйтесь и добавьте свой автомобиль.' },
-  { step: '2', title: 'Выберите услугу', text: 'Подберите нужную услугу и удобное время.' },
-  { step: '3', title: 'Отслеживайте статус', text: 'Следите за прогрессом работы в личном кабинете.' },
-  { step: '4', title: 'Получайте уведомления', text: 'Мы сообщим, когда автомобиль будет готов.' },
+  { step: '01', title: 'Создайте аккаунт', text: 'Зарегистрируйтесь и добавьте свой автомобиль.' },
+  { step: '02', title: 'Выберите услугу', text: 'Подберите нужную услугу и удобное время.' },
+  { step: '03', title: 'Отслеживайте статус', text: 'Следите за прогрессом работы в личном кабинете.' },
+  { step: '04', title: 'Получайте уведомления', text: 'Мы сообщим, когда автомобиль будет готов.' },
 ];
 
 const FAQ = [
@@ -63,25 +63,31 @@ export default function Home() {
       </Head>
 
       {/* Hero */}
-      <section className="bg-gray-900 text-white">
-        <div className="max-w-6xl mx-auto px-4 py-20 text-center">
-          <p className="text-blue-400 font-semibold tracking-widest uppercase text-sm mb-3">AUTOHUB</p>
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+      <section className="hero-gradient text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-primary-500 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 right-10 w-96 h-96 bg-purple-500 rounded-full blur-3xl" />
+        </div>
+        <div className="relative max-w-6xl mx-auto px-4 py-28 text-center">
+          <p className="text-primary-400 font-semibold tracking-widest uppercase text-sm mb-4">AUTOHUB</p>
+          <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
             Автосервис,
             <br />
-            который говорит с вами на одном языке
+            <span className="hero-gradient-text">который говорит с вами</span>
+            <br />
+            на одном языке
           </h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
             Онлайн-запись, прозрачная смета, история обслуживания
             и уведомления о статусе — всё в личном кабинете.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             {isAuthenticated ? (
               <>
-                <Link href="/book-service" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-10 rounded-lg">
+                <Link href="/book-service" className="bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3.5 px-10 rounded-xl shadow-glow hover:shadow-glow-lg transition-all duration-300">
                   Записаться онлайн
                 </Link>
-                <Link href="/dashboard" className="bg-transparent border border-gray-500 hover:border-white text-white font-semibold py-3 px-10 rounded-lg">
+                <Link href="/dashboard" className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold py-3.5 px-10 rounded-xl backdrop-blur-sm transition-all duration-300">
                   Личный кабинет
                 </Link>
               </>
@@ -89,11 +95,11 @@ export default function Home() {
               <>
                 <button
                   onClick={() => setShowAuthPrompt(true)}
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-10 rounded-lg"
+                  className="bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3.5 px-10 rounded-xl shadow-glow hover:shadow-glow-lg transition-all duration-300"
                 >
                   Записаться онлайн
                 </button>
-                <Link href="/services" className="bg-transparent border border-gray-500 hover:border-white text-white font-semibold py-3 px-10 rounded-lg">
+                <Link href="/services" className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold py-3.5 px-10 rounded-xl backdrop-blur-sm transition-all duration-300">
                   Наши услуги
                 </Link>
               </>
@@ -103,23 +109,23 @@ export default function Home() {
       </section>
 
       {showAuthPrompt && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-8 max-w-md mx-4">
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl p-8 max-w-md mx-4 shadow-soft-xl animate-float">
             <h2 className="text-2xl font-bold mb-4">Войдите или зарегистрируйтесь</h2>
             <p className="text-gray-600 mb-6">
               Чтобы записаться на обслуживание онлайн, необходимо войти в аккаунт или создать новый.
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               <Link
                 href="/login"
-                className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-center font-semibold py-2 px-4 rounded"
+                className="flex-1 bg-primary-600 hover:bg-primary-700 text-white text-center font-semibold py-3 px-4 rounded-xl transition-all duration-300"
                 onClick={() => setShowAuthPrompt(false)}
               >
                 Войти
               </Link>
               <Link
                 href="/signup"
-                className="flex-1 bg-transparent border border-blue-600 text-blue-600 hover:bg-blue-50 text-center font-semibold py-2 px-4 rounded"
+                className="flex-1 bg-white border border-gray-200 hover:border-gray-300 text-gray-700 hover:text-primary-600 text-center font-semibold py-3 px-4 rounded-xl transition-all duration-300"
                 onClick={() => setShowAuthPrompt(false)}
               >
                 Регистрация
@@ -127,7 +133,7 @@ export default function Home() {
             </div>
             <button
               onClick={() => setShowAuthPrompt(false)}
-              className="mt-4 w-full text-gray-500 hover:text-gray-700"
+              className="mt-4 w-full text-gray-500 hover:text-gray-700 py-2 rounded-lg hover:bg-gray-50 transition-colors"
             >
               Отмена
             </button>
@@ -135,10 +141,11 @@ export default function Home() {
         </div>
       )}
 
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="section-container">
         {/* Преимущества */}
         <section className="text-center max-w-3xl mx-auto mt-24" data-reveal>
-          <h2 className="text-3xl font-bold mb-4">Почему AUTOHUB</h2>
+          <p className="text-primary-600 font-semibold tracking-widest uppercase text-sm mb-3">Преимущества</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Почему AUTOHUB</h2>
           <p className="text-lg text-gray-600">
             Мы объединили классический автосервис и современную IT-платформу:
             минимум формальностей, максимум прозрачности
@@ -148,7 +155,10 @@ export default function Home() {
 
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
           {ADVANTAGES.map((item, i) => (
-            <div key={item.title} className="bg-white p-6 rounded-lg shadow-md border border-gray-200" data-reveal style={{ '--reveal-delay': `${i * 80}ms` }}>
+            <div key={item.title} className="card p-6" data-reveal style={{ '--reveal-delay': `${i * 80}ms` }}>
+              <div className="w-12 h-12 rounded-xl bg-primary-50 flex items-center justify-center mb-4">
+                <div className="w-6 h-6 bg-primary-500 rounded-lg" />
+              </div>
               <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
               <p className="text-gray-600">{item.text}</p>
             </div>
@@ -157,13 +167,19 @@ export default function Home() {
 
         {/* Популярные услуги */}
         <section className="mt-24">
-          <h2 className="text-3xl font-bold mb-6" data-reveal>Популярные услуги</h2>
+          <div className="text-center mb-12">
+            <p className="text-primary-600 font-semibold tracking-widest uppercase text-sm mb-3">Услуги</p>
+            <h2 className="text-3xl md:text-4xl font-bold" data-reveal>Популярные услуги</h2>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {POPULAR_SERVICES.map((service, i) => (
-              <div key={service.name} className="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex items-center justify-between" data-reveal style={{ '--reveal-delay': `${i * 80}ms` }}>
+              <div key={service.name} className="card p-6 flex items-center gap-4" data-reveal style={{ '--reveal-delay': `${i * 80}ms` }}>
+                <div className="w-12 h-12 rounded-xl bg-primary-50 flex items-center justify-center text-2xl flex-shrink-0">
+                  {service.icon}
+                </div>
                 <div>
-                  <h3 className="text-xl font-semibold">{service.icon} {service.name}</h3>
-                  <p className="text-gray-600">{service.price}</p>
+                  <h3 className="text-lg font-semibold">{service.name}</h3>
+                  <p className="text-primary-600 font-medium">{service.price}</p>
                 </div>
               </div>
             ))}
@@ -172,11 +188,14 @@ export default function Home() {
 
         {/* Как это работает */}
         <section className="mt-24">
-          <h2 className="text-3xl font-bold mb-6 text-center" data-reveal>Как это работает</h2>
+          <div className="text-center mb-12">
+            <p className="text-primary-600 font-semibold tracking-widest uppercase text-sm mb-3">Процесс</p>
+            <h2 className="text-3xl md:text-4xl font-bold" data-reveal>Как это работает</h2>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {HOW_IT_WORKS.map((item, i) => (
-              <div key={item.step} className="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center" data-reveal style={{ '--reveal-delay': `${i * 80}ms` }}>
-                <div className="text-4xl font-bold text-blue-600 mb-2">{item.step}</div>
+              <div key={item.step} className="card p-6 text-center" data-reveal style={{ '--reveal-delay': `${i * 80}ms` }}>
+                <div className="text-3xl font-extrabold text-primary-600 mb-4 tracking-tight">{item.step}</div>
                 <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
                 <p className="text-gray-600">{item.text}</p>
               </div>
@@ -186,48 +205,67 @@ export default function Home() {
 
         {/* FAQ */}
         <section className="max-w-3xl mx-auto mt-24">
-          <h2 className="text-3xl font-bold mb-6 text-center" data-reveal>Частые вопросы</h2>
-          <div className="space-y-4">
+          <div className="text-center mb-12">
+            <p className="text-primary-600 font-semibold tracking-widest uppercase text-sm mb-3">FAQ</p>
+            <h2 className="text-3xl md:text-4xl font-bold" data-reveal>Частые вопросы</h2>
+          </div>
+          <div className="space-y-3">
             {FAQ.map((item, i) => (
-              <details key={item.q} className="bg-gray-50 rounded-lg border border-gray-200 p-4" data-reveal style={{ '--reveal-delay': `${i * 80}ms` }}>
-                <summary className="font-semibold cursor-pointer">{item.q}</summary>
-                <p className="mt-2 text-gray-600">{item.a}</p>
+              <details key={item.q} className="card-static p-5 cursor-pointer group" data-reveal style={{ '--reveal-delay': `${i * 80}ms` }}>
+                <summary className="font-semibold flex justify-between items-center list-none">
+                  {item.q}
+                  <span className="text-gray-400 group-hover:text-primary-600 transition-colors ml-2">▸</span>
+                </summary>
+                <p className="mt-3 text-gray-600">{item.a}</p>
               </details>
             ))}
           </div>
         </section>
 
         {/* Контакты */}
-        <section className="bg-gray-100 rounded-xl p-8 mt-24" data-reveal>
-          <h2 className="text-3xl font-bold mb-4">Контакты</h2>
-          <p className="text-gray-700">
+        <section className="bg-surface-100 rounded-2xl p-8 mt-24" data-reveal>
+          <div className="text-center mb-8">
+            <p className="text-primary-600 font-semibold tracking-widest uppercase text-sm mb-3">Контакты</p>
+            <h2 className="text-3xl md:text-4xl font-bold">Найти нас</h2>
+          </div>
+          <p className="text-gray-700 text-center text-lg">
             Москва, Ленинградский проспект, 39 • +7 (900) 000-00-00 • Ежедневно с 9:00 до 21:00
           </p>
-          <Link href="/contact" className="inline-block mt-4 text-blue-600 hover:text-blue-800 font-medium">
-            Подробнее →
-          </Link>
+          <div className="text-center mt-4">
+            <Link href="/contact" className="inline-block text-primary-600 hover:text-primary-700 font-medium">
+              Подробнее →
+            </Link>
+          </div>
         </section>
 
         {/* CTA */}
-        <section className="bg-blue-600 text-white rounded-xl p-10 text-center mt-24" data-reveal>
-          <h2 className="text-3xl font-bold mb-3">
-            {isAuthenticated ? 'Готовы записаться на обслуживание?' : 'Готовы доверить нам свой автомобиль?'}
-          </h2>
-          <p className="mb-6 text-blue-100">
-            {isAuthenticated ? 'Выберите автомобиль и услугу в личном кабинете.' : 'Создайте аккаунт и запишитесь на удобное время.'}
-          </p>
-          {isAuthenticated ? (
-            <Link href="/book-service" className="inline-block bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 px-10 rounded-lg">
-              Записаться онлайн
-            </Link>
-          ) : (
-            <button
-              onClick={() => setShowAuthPrompt(true)}
-              className="inline-block bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 px-10 rounded-lg"
-            >
-              Записаться онлайн
-            </button>
-          )}
+        <section className="mt-16 mb-12">
+          <div className="bg-gradient-to-r from-primary-600 to-purple-600 text-white rounded-2xl p-12 text-center relative overflow-hidden" data-reveal>
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 left-0 w-40 h-40 bg-white rounded-full -translate-x-1/2 -translate-y-1/2" />
+              <div className="absolute bottom-0 right-0 w-60 h-60 bg-white rounded-full translate-x-1/3 translate-y-1/3" />
+            </div>
+            <div className="relative">
+              <h2 className="text-3xl md:text-4xl font-bold mb-3">
+                {isAuthenticated ? 'Готовы записаться на обслуживание?' : 'Готовы доверить нам свой автомобиль?'}
+              </h2>
+              <p className="mb-8 text-blue-100 text-lg">
+                {isAuthenticated ? 'Выберите автомобиль и услугу в личном кабинете.' : 'Создайте аккаунт и запишитесь на удобное время.'}
+              </p>
+              {isAuthenticated ? (
+                <Link href="/book-service" className="inline-block bg-white hover:bg-gray-100 text-primary-600 font-semibold py-3.5 px-10 rounded-xl shadow-lg transition-all duration-300">
+                  Записаться онлайн
+                </Link>
+              ) : (
+                <button
+                  onClick={() => setShowAuthPrompt(true)}
+                  className="inline-block bg-white hover:bg-gray-100 text-primary-600 font-semibold py-3.5 px-10 rounded-xl shadow-lg transition-all duration-300"
+                >
+                  Записаться онлайн
+                </button>
+              )}
+            </div>
+          </div>
         </section>
       </div>
     </>

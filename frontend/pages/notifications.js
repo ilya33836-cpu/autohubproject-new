@@ -14,83 +14,59 @@ export default function NotificationsPage() {
   useEffect(() => {
     const fetchNotifications = async () => {
       const token = localStorage.getItem('access_token');
-      if (!token) {
-        return;
-      }
-
+      if (!token) return;
       try {
-        const response = await axios.get(`${API_BASE_URL}/notifications/my`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await axios.get(`${API_BASE_URL}/notifications/my`, { headers: { Authorization: `Bearer ${token}` } });
         setNotifications(response.data);
       } catch (err) {
         console.error('Error fetching notifications:', err);
         setError('Ошибка при загрузке уведомлений');
-        if (err.response?.status === 401) {
-          localStorage.removeItem('access_token');
-        }
-      } finally {
-        setLoading(false);
-      }
+        if (err.response?.status === 401) localStorage.removeItem('access_token');
+      } finally { setLoading(false); }
     };
-
     fetchNotifications();
   }, [router]);
 
-  const markAsRead = async (notificationId) => {
+  const markAsRead = async (id) => {
     const token = localStorage.getItem('access_token');
     if (!token) return;
-
     try {
-      await axios.put(`${API_BASE_URL}/notifications/${notificationId}`, { is_read: true }, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      // Обновляем состояние локально
-      setNotifications(prev =>
-        prev.map(n => n.id === notificationId ? { ...n, is_read: true } : n)
-      );
-    } catch (err) {
-      console.error('Error marking notification as read:', err);
-    }
+      await axios.put(`${API_BASE_URL}/notifications/${id}`, { is_read: true }, { headers: { Authorization: `Bearer ${token}` } });
+      setNotifications(prev => prev.map(n => n.id === id ? { ...n, is_read: true } : n));
+    } catch (err) { console.error('Error marking notification as read:', err); }
   };
 
-  if (loading) {
-    return <div className="text-center">Загрузка уведомлений...</div>;
-  }
-
-  if (error) {
-    return (
-      <div className="text-center">
-        <p className="text-red-500">{error}</p>
-        <Link href="/" className="text-blue-600 hover:text-blue-800">Вернуться на главную</Link>
-      </div>
-    );
-  }
+  if (loading) return <div className="text-center py-24 text-gray-500">Загрузка уведомлений...</div>;
+  if (error) return <div className="text-center py-24"><p className="text-red-500 mb-2">{error}</p><Link href="/" className="text-primary-600 hover:text-primary-700">Вернуться на главную</Link></div>;
 
   return (
     <ProtectedRoute>
-      <div className="max-w-4xl mx-auto px-4 mt-16">
-        <h1 className="text-3xl font-bold mb-6">Уведомления</h1>
+      <div className="max-w-4xl mx-auto mt-8">
+        <div className="mb-8">
+          <p className="text-primary-600 font-semibold tracking-widest uppercase text-sm mb-2">Уведомления</p>
+          <h1 className="text-3xl md:text-4xl font-extrabold">Уведомления</h1>
+        </div>
 
         <div className="mb-6">
-          <Link href="/dashboard" className="text-blue-600 hover:text-blue-800">&larr; Назад в личный кабинет</Link>
+          <Link href="/dashboard" className="text-primary-600 hover:text-primary-700 text-sm font-medium">&larr; Назад в личный кабинет</Link>
         </div>
 
         {notifications.length === 0 ? (
-          <p className="text-gray-600">У вас нет уведомлений.</p>
+          <div className="card-static p-12 text-center">
+            <p className="text-gray-500 text-lg">У вас нет уведомлений.</p>
+          </div>
         ) : (
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <ul className="divide-y divide-gray-200">
-              {notifications.map((notification) => (
+          <div className="card-static overflow-hidden">
+            <ul className="divide-y divide-gray-100">
+              {notifications.map(n => (
                 <li
-                  key={notification.id}
-                  className={`py-4 cursor-pointer ${!notification.is_read ? 'bg-blue-50 font-semibold' : 'hover:bg-gray-50'}`}
-                  onClick={() => markAsRead(notification.id)}
+                  key={n.id}
+                  className={`p-5 cursor-pointer transition-colors ${!n.is_read ? 'bg-primary-50/60' : 'hover:bg-surface-50'}`}
+                  onClick={() => markAsRead(n.id)}
                 >
-                  <p>{notification.message}</p>
-                  <p className="text-xs text-gray-500 mt-1">
-                    {new Date(notification.created_at).toLocaleString('ru-RU')} | Тип: {notification.type}
+                  <p className="text-gray-900">{n.message}</p>
+                  <p className="text-xs text-gray-400 mt-1">
+                    {new Date(n.created_at).toLocaleString('ru-RU')} • Тип: {n.type}
                   </p>
                 </li>
               ))}
